@@ -23,11 +23,6 @@ body{
 	background-color: #191919;
 	height:100%;
 }
-#userProfile{
-	width:19.8%;
-	display:flex;
-	justify-content: center;
-}
 #userWork{
 	width:79.8%;
 	display: flex;
@@ -36,6 +31,25 @@ body{
 	background-color: rgb(20, 20, 20);
 
 }
+#write{
+	height:94%;
+	width: 94%;
+	background-color: transparent;
+	outline:none;
+	border: none;
+	color:antiquewhite;
+	font-size: 1.7vw;
+	font-family: Yu Gothic UI;
+	padding:1%
+}
+#userProfile{
+	width:19.8%;
+	display:flex;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
 .textContainer{
 	height:49.5%;
 	width:100%;
@@ -43,9 +57,68 @@ body{
 
 }
 #profileImg{
- height:17vw;
+ height:16.5vw;
  width:17vw;
- background-color: rgb(0, 201, 236);
+ background-color:var(--themecolor);
  border-radius: 100%;
  margin-top: 1.8vw;
+}
+
+#userProfile p{
+	color: antiquewhite;
+	text-transform: uppercase;
+	margin-top: 1.5vw;
+	font-size: 1.6vw;
+	letter-spacing: 0.2vw;
+}
+
+.pointCase{
+	width: 82%;
+	height:9.5%;
+	position: relative;
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	margin-top: 5vw;
+}
+.pointCase label{
+	position: absolute;
+	background-color: #191919;
+	color: antiquewhite;
+	top:-.55vw;
+	padding: 0vw .5vw 0vw .5vw;
+	font-size: 1.2vw;
+	letter-spacing: 0.25vw;
+}
+.pointCase input{
+	height:100%;
+	width:100%;
+	outline: none;
+	background-color: transparent;
+	border:0.25vw solid var(--themecolor);
+	border-radius: 0.6vw;
+	text-align: center;
+	color: antiquewhite;
+	font-size: 3.2vw;
+	letter-spacing: 0.45vw;
+}
+#userProfile button{
+ font-size: 2vw;
+ letter-spacing: 0.1vw;
+ border: none;
+ position: absolute;
+ cursor: pointer;
+}
+#restart{
+	color:var(--themecolor);
+	background-color: transparent;
+	bottom: 9vw;
+}
+#giveUp{
+	color:antiquewhite;
+	background-color: var(--themecolor);
+	bottom: 4vw;
+	border-radius: .4vw;
+	width:75%;
+	height: 5.5%;
 }

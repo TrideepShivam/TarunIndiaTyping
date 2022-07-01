@@ -1,0 +1,53 @@
+.popupContainer{
+    width:100%;
+    height:100%;
+    position:absolute;
+    background-color:rgba(0,0,0,.9);
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    z-index:10;
+}
+#popup{
+    width:500px;
+    height: 500px;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #050505;
+    border:1px solid var(--themecolor);
+    border-radius:10px;
+}
+.themeText{
+    color:var(--themecolor);
+    font-size:40px;
+    margin:5px;
+}
+input[name=username]{
+    width:370px;
+    padding:10px 15px;
+}
+.dataEntry{
+    background-color: #0a0a0a;
+    color:white;
+    border:1px solid transparent;
+    border-radius: 10px;
+    font-size:20px;
+    width:80%;
+    padding:10px;
+    margin:10px;
+}
+.dataEntry:focus{
+    outline:none;
+    border-color:var(--themecolor);
+}
+.btn{
+    background-color: var(--themecolor);
+    padding:20px 50px;
+    font-size:25px;
+    border-radius: 5px;
+    cursor:pointer;
+    margin:5px;
+}
+.btn:hover{background-color: aqua;}

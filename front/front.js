@@ -1,4 +1,4 @@
-function frontPopup(order="false") {
+function frontPopup(order=false) {
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
@@ -9,7 +9,7 @@ function frontPopup(order="false") {
                     `
 }
 function getContent(o){
-    if(!0){
+    if(!o){
         return `
                 <h1 class="themeText">Tarun India</h1>
                 <input name="username" class="dataEntry" placeholder="Name">
@@ -38,6 +38,33 @@ function getContent(o){
                 <button class="btn">Start Test</button>
                 `;
     }else{
-        return ``;
+        return `
+                <h1 class="themeText">Thank You</h1>
+                <div id="cardContainer">
+                    <div id="word" class="card">
+                        <h1>00</h1>
+                        <p>Words</p>
+                    </div>
+                    <div id="keystroke" class="card">
+                        <h1>00</h1>
+                        <p>Keystrokes</p>
+                    </div>
+                    <div id="error"class="card">
+                        <h1>00</h1>
+                        <p>Errors</p>
+                    </div>
+                    <div id="accuracy" class="card">
+                        <h1>0.0</h1>
+                        <p>Accuracy</p>
+                    </div>
+                    <div id="speed" class="card">
+                        <h1>00</h1>
+                        <p>wpm</p>
+                    </div>
+
+                </div>
+                <button class="btn">Restart</button>
+                <p class="themeText" style="font-size:15px;">Powered By Tarun India</p>
+                `;
     }
 }

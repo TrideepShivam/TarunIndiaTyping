@@ -9,8 +9,8 @@
     z-index:10;
 }
 #popup{
-    width:500px;
-    height: 500px;
+    width:600px;
+    height: 600px;
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -18,24 +18,22 @@
     background-color: #050505;
     border:1px solid var(--themecolor);
     border-radius:10px;
+    row-gap: 5px;
 }
 .themeText{
     color:var(--themecolor);
-    font-size:40px;
-    margin:5px;
+    font-size: 50px;
+    margin:10px;
 }
-input[name=username]{
-    width:370px;
-    padding:10px 15px;
-}
+input[name=username]{width:420px;}
 .dataEntry{
     background-color: #0a0a0a;
     color:white;
     border:1px solid transparent;
     border-radius: 10px;
     font-size:20px;
-    width:80%;
-    padding:10px;
+    width:450px;
+    padding:12px;
     margin:10px;
 }
 .dataEntry:focus{
@@ -51,3 +49,25 @@ input[name=username]{
     margin:5px;
 }
 .btn:hover{background-color: aqua;}
+#cardContainer{
+    height:auto;
+    width:90%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    align-items: center;
+}
+.card{
+    width:125px;
+    height:125px;
+    margin:10px;
+    border:5px solid var(--themecolor);
+    border-radius:50%;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items: center;
+    color:#efefef;
+}
+.card h1{margin:0;font-size:40px;}
+.card p{margin:0;}

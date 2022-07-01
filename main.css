@@ -37,7 +37,6 @@ body{
 	background-color: transparent;
 	outline:none;
 	border: none;
-	color:antiquewhite;
 	font-size: 1.7vw;
 	font-family: Yu Gothic UI;
 	padding:1%
@@ -52,14 +51,16 @@ body{
 
 .textContainer{
 	height:49.5%;
-	width:100%;
+	width:95%;
+	padding:0% 2.5%;
 	background-color: #191919;
-
+	color:antiquewhite;
 }
 #profileImg{
  height:16.5vw;
  width:17vw;
- background-color:var(--themecolor);
+ background-size:101%;
+ background-image:url('ram.png');
  border-radius: 100%;
  margin-top: 1.8vw;
 }
@@ -67,20 +68,21 @@ body{
 #userProfile p{
 	color: antiquewhite;
 	text-transform: uppercase;
-	margin-top: 1.5vw;
+	margin: 1.5vw;
 	font-size: 1.6vw;
 	letter-spacing: 0.2vw;
 }
 
 .pointCase{
 	width: 82%;
-	height:9.5%;
+	height:80px;
 	position: relative;
+	margin:10px;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin-top: 5vw;
 }
+
 .pointCase label{
 	position: absolute;
 	background-color: #191919;
@@ -90,6 +92,7 @@ body{
 	font-size: 1.2vw;
 	letter-spacing: 0.25vw;
 }
+
 .pointCase input{
 	height:100%;
 	width:100%;
@@ -102,23 +105,14 @@ body{
 	font-size: 3.2vw;
 	letter-spacing: 0.45vw;
 }
-#userProfile button{
- font-size: 2vw;
- letter-spacing: 0.1vw;
- border: none;
- position: absolute;
- cursor: pointer;
-}
+
 #restart{
 	color:var(--themecolor);
 	background-color: transparent;
-	bottom: 9vw;
+	padding:20px 40px;
+	border:none;
+	font-size:20px;
+	cursor:pointer;
 }
-#giveUp{
-	color:antiquewhite;
-	background-color: var(--themecolor);
-	bottom: 4vw;
-	border-radius: .4vw;
-	width:75%;
-	height: 5.5%;
-}
+
+#restart:hover{color: #ebebeb;}

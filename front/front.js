@@ -35,7 +35,7 @@ function getContent(o){
                         <option>level 9</option>
                         <option>level 10</option>
                 </select>
-                <button class="btn">Start Test</button>
+                <button class="btn" onclick="start()">Start Test</button>
                 `;
     }else{
         return `
@@ -63,7 +63,7 @@ function getContent(o){
                     </div>
 
                 </div>
-                <button class="btn">Restart</button>
+                <button class="btn" onclick="document.reload();">Restart</button>
                 <p class="themeText" style="font-size:15px;">Powered By Tarun India</p>
                 `;
     }

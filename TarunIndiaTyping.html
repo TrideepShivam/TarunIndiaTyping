@@ -5,9 +5,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Document</title>
+	<script src="main.js"></script>
 	<link rel="stylesheet" href="main.css">
 	<link rel="stylesheet" href="front/front.css">
 	<script src="front/front.js"></script>
+	
 </head>
 <body onload="frontPopup()">
 	<div id="main">
@@ -20,8 +22,7 @@
 			</div>
 		</div>
 		<div class="container" id="userProfile">
-			<div id="profileImg">
-			</div>
+			<div id="profileImg"></div>
 			<p>shahshwat</p>
 			<div class="pointCase">
 				<label>TIMER</label>
@@ -31,8 +32,8 @@
 				<label>WORDS</label>
 				<input type="text" value="343" disabled>
 			</div>
-			<button id="restart">Restart</button>
-			<button id="giveUp">GIVE UP</button>
+			<button id="restart">RESTART</button>
+			<button class="btn" id="giveup" onclick="frontPopup(true)">GIVE UP</button>
 		</div>
 	</div>
 </body>

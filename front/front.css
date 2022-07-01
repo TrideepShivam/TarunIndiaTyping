@@ -47,6 +47,8 @@ input[name=username]{width:420px;}
     border-radius: 5px;
     cursor:pointer;
     margin:5px;
+    position:relative;
+    border:1px solid var(--themecolor);
 }
 .btn:hover{background-color: aqua;}
 #cardContainer{

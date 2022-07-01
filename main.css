@@ -1,6 +1,9 @@
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:rgba(0,0,0,.3);}
 ::-webkit-scrollbar-thumb{background:black;}
+:root{
+    --themecolor:#1dd5e6;
+}
 body{
 	font-family: 'Open Sans', sans-serif;
 	margin:0;

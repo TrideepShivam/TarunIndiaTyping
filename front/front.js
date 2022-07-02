@@ -63,7 +63,7 @@ function getContent(o){
                     </div>
 
                 </div>
-                <button class="btn" onclick="document.reload();">Restart</button>
+                <button class="btn" onclick="location.reload();">Restart</button>
                 <p class="themeText" style="font-size:15px;">Powered By Tarun India</p>
                 `;
     }

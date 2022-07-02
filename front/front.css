@@ -19,6 +19,7 @@
     border:1px solid var(--themecolor);
     border-radius:10px;
     row-gap: 5px;
+    animation:themeStyle 1s;
 }
 .themeText{
     color:var(--themecolor);
@@ -70,6 +71,8 @@ input[name=username]{width:420px;}
     justify-content:center;
     align-items: center;
     color:#efefef;
+    animation:themeStyle 1s;
 }
 .card h1{margin:0;font-size:40px;}
 .card p{margin:0;}
+

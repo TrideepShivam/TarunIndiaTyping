@@ -116,3 +116,8 @@ body{
 }
 
 #restart:hover{color: #ebebeb;}
+
+@keyframes themeStyle{
+    0%{transform:translatey(15px);opacity:0;}
+    100%{transform:translatey(0px);opacity:1;}
+}

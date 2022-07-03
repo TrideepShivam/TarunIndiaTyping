@@ -45,8 +45,8 @@ function start(){
 
 function deploy(userDetails){
     document.getElementById('read').innerHTML=storys.setLanguageLevel(userDetails.subject,userDetails.level);
-    
-    
+    document.getElementById('userName').innerHTML=userDetails.username;
+    document.getElementById('timers').value=userDetails.timing.slice(0,2) + ':00';
 }
 
 var setvalue;

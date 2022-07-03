@@ -19,8 +19,8 @@ function getContent(o){
                     <option>Mangal</option>
                 </select>
                 <select class="dataEntry" name="timing">
-                    <option>1 min</option>
-                    <option>5 min</option>
+                    <option>01 min</option>
+                    <option>05 min</option>
                     <option>10 min</option>
                     <option>15 min</option>
                 </select>

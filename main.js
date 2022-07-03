@@ -46,6 +46,7 @@ function start(){
 function deploy(userDetails){
     document.getElementById('read').innerHTML=storys.setLanguageLevel(userDetails.subject,userDetails.level);
     
+    
 }
 
 var setvalue;

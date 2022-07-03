@@ -15,7 +15,7 @@ function getContent(o){
                 <input name="username" class="dataEntry" placeholder="Name">
                 <select class="dataEntry" name="subject">
                     <option>English</option>
-                    <option>Kruti Dev</option>
+                    <option>KrutiDev</option>
                     <option>Mangal</option>
                 </select>
                 <select class="dataEntry" name="timing">
@@ -25,11 +25,11 @@ function getContent(o){
                     <option>15 min</option>
                 </select>
                 <select class="dataEntry" name="level">
-                        <option>level 1</option>
-                        <option>level 2</option>
-                        <option>level 3</option>
-                        <option>level 4</option>
-                        <option>level 5</option>
+                        <option>level1</option>
+                        <option>level2</option>
+                        <option>level3</option>
+                        <option>level4</option>
+                        <option>level5</option>
                 </select>
                 <button class="btn" onclick="start()">Start Test</button>
                 `;

@@ -12,3 +12,18 @@ requirements:
     MainPage:
     1. first panal is contect panal which is to be written below.
     2. end panal is writing section.
+
+    wordCalculation:
+    1. if user press space key.
+       then we check just before character of space bar.if that is a any character then we add 1 in count.
+    2. At the end, if last entry  is a character then we add 1 in final counter.
+
+    restriction in wordCalculation:
+    1. if last entry is spacebar then backspace button is disabled.otherwise backspace is enable.
+    2. timer start, if characteris pressed first.
+
+    wordComparision:
+    1 first word will be highlighted with theme color.
+    2. whenever user press 'space' , next word will be hightlighted , and compare last word of typing div to last highllighted of story div.
+
+    3. create a global object which store total word,errors,error value in array, keystrocks. 

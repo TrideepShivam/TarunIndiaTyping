@@ -33,13 +33,14 @@ body{
 }
 #write{
 	height:94%;
-	width: 94%;
+	width: 100%;
 	background-color: transparent;
 	outline:none;
 	border: none;
 	font-size: 1.7vw;
 	font-family: Yu Gothic UI;
-	padding:1%
+	padding:1%;
+	color:white;
 }
 #userProfile{
 	width:19.8%;
@@ -63,6 +64,7 @@ body{
  background-image:url('ram.png');
  border-radius: 100%;
  margin-top: 1.8vw;
+ border: 5px solid var(--themecolor);
 }
 
 #userProfile p{

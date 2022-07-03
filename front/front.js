@@ -19,6 +19,7 @@ function getContent(o){
                     <option>Mangal</option>
                 </select>
                 <select class="dataEntry" name="timing">
+                    <option>1 min</option>
                     <option>5 min</option>
                     <option>10 min</option>
                     <option>15 min</option>
@@ -29,11 +30,6 @@ function getContent(o){
                         <option>level 3</option>
                         <option>level 4</option>
                         <option>level 5</option>
-                        <option>level 6</option>
-                        <option>level 7</option>
-                        <option>level 8</option>
-                        <option>level 9</option>
-                        <option>level 10</option>
                 </select>
                 <button class="btn" onclick="start()">Start Test</button>
                 `;

@@ -76,3 +76,16 @@ input[name=username]{width:420px;}
 .card h1{margin:0;font-size:40px;}
 .card p{margin:0;}
 
+#errorContainer{
+    width:auto;
+    position: absolute;
+    top:30%;
+    left:50%;
+    height:auto;
+    background-color: #eaeaea;
+    border:1px solid var(--themecolor);
+    border-radius: 4px;
+    padding: 3%;
+    z-index:12;
+    word-wrap:wrap;
+}

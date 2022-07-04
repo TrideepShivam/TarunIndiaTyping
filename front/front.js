@@ -8,7 +8,7 @@ function frontPopup(order=false) {
                        `+getContent(order)+`
                     </div>
                     `
-                    dashborad(results={words:144,keys:1400,error:3,totalT:5});
+                    dashborad(results={words:144,keys:1400,error:8,totalT:5,errorWord:['banana','explain','computer','group','banana','explain','computer','group']});
 }
 function getContent(o){
     if(!o){
@@ -68,16 +68,18 @@ function getContent(o){
 }
 
 
-function applyErrorDiv(errorTxt=['banana','explain','computer','group']){
+function applyErrorDiv(errorTxt){
     let main = document.createElement('div');
     main.setAttribute('id', 'errorContainer');
      document.body.appendChild(main);
      for(i=0;i<errorTxt.length;i++){
-       main.innerHTML= errorTxt[i]+','+main.innerHTML;
+       main.innerHTML= errorTxt[i]+' , '+main.innerHTML;
      }
+     return main;
 }
 
-function dashborad(results={words:33,keys:42,error:33,totalT:222}){
+function dashborad(results){
+    let errorDivContainer;
     let resultEle=document.getElementsByClassName('card');
     let allvalue=Object.values(results);
     for(i=0;i<3;i++){
@@ -86,5 +88,11 @@ function dashborad(results={words:33,keys:42,error:33,totalT:222}){
     let accuracys=((results.words-results.error)*100/results.words).toString();
     resultEle[3].children[0].innerHTML=accuracys.slice(0,5);
     resultEle[4].children[0].innerHTML=results.words/results.totalT;
-   resultEle[2].addEventListener('mouseenter',function(){applyErrorDiv(['banana','explain','computer','group','banana','explain','computer','group']);});
+    resultEle[2].addEventListener('mouseenter',function(){
+        errorDivContainer=applyErrorDiv(results.errorWord);
+        this.style.cursor="pointer";
+    });
+   resultEle[2].addEventListener('mouseleave',function(){
+        errorDivContainer.remove();
+   });
 }

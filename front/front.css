@@ -77,15 +77,18 @@ input[name=username]{width:420px;}
 .card p{margin:0;}
 
 #errorContainer{
-    width:auto;
+    width:40%;
     position: absolute;
-    top:30%;
-    left:50%;
+    top:45%;
+    right:5%;
     height:auto;
-    background-color: #eaeaea;
-    border:1px solid var(--themecolor);
+    background-color: #4d4d4d;
+    border:1px solid #353535;
     border-radius: 4px;
-    padding: 3%;
+    padding: 1vw;
     z-index:12;
     word-wrap:wrap;
+    color:rgb(236, 236, 236);
+    line-height: 1.3;
+
 }

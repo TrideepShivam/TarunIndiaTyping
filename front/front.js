@@ -1,4 +1,5 @@
 function frontPopup(order=false) {
+    
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
@@ -7,6 +8,7 @@ function frontPopup(order=false) {
                        `+getContent(order)+`
                     </div>
                     `
+                    dashborad(results={words:33,keys:42,error:31});
 }
 function getContent(o){
     if(!o){
@@ -63,4 +65,13 @@ function getContent(o){
                 <p class="themeText" style="font-size:15px;">Powered By Tarun India</p>
                 `;
     }
+}
+function dashborad(results={words:33,keys:42,error:33,totalT:222}){
+    let resultEle=document.getElementsByClassName('card');
+    let allvalue=Object.values(results);
+    for(i=0;i<3;i++){
+        resultEle[i].children[0].innerHTML=allvalue[i];
+    }
+alert(allvalue);
+    resultEle[3].children[0].innerHTML=results.words+results.keys;
 }

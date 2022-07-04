@@ -104,6 +104,7 @@ secTens=timeshowValue.slice(3,4);
 secOnes=timeshowValue.slice(4,5);
 }
 if(x=='ArrowRight'){
+    
     countdown(min,secTens,secOnes);
 }
 });

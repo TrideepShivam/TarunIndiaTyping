@@ -10,6 +10,7 @@ body{
 	background-color:dodgerblue;
 	overflow-x:hidden;
 }
+#highlight{color:var(--themecolor);}
 #main{
 	height:100%;
 	width:100%;

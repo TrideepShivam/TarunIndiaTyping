@@ -18,7 +18,7 @@
 				<p id="read">Showing Text</p>
 			</div>
 			<div class="textContainer" id="writable">
-				<textarea id="write" placeholder="start typing..."></textarea>
+				<textarea id="write" placeholder="start typing..." onkeyup="typing(this,event)"></textarea>
 			</div>
 		</div>
 		<div class="container" id="userProfile">
@@ -32,7 +32,7 @@
 				<label  onclick="dashborad(results={words:'',keys:'',error:''})" >WORDS</label>
 				<input type="text" value="000" disabled>
 			</div>
-			<button id="restart" onclick="counter(1)">RESTART</button>
+			<button id="restart" onclick="">RESTART</button>
 			<button class="btn" id="giveup" onclick="frontPopup(true)">GIVE UP</button>
 		</div>
 	</div>

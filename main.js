@@ -171,9 +171,9 @@ function typing(currentEle,e){
     let content= currentEle.value;
     let newKey= e.key;
     if(newKey==' ' && content!=""){
-        CurrentState.writtenNextIndex=content.length-1;
-        console.log(CurrentState.isSameWord());
+        CurrentState.writtenNextIndex=content.length;
         highlightNext();
-        console.log(CurrentState.readableCurrentIndex);
+    }else if(e.which==8&&content[content.length-1]==' '){
+        e.preventDefault();
     }
 }

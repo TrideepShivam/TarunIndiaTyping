@@ -5,14 +5,15 @@ let CurrentState={
     readableNextWord:"",
     writtenCurrentIndex:-1,
     writtenNextIndex:0,
-    writtenWord:function(){
+    writtenWord:"",
+    findWrittenWord:function(){
         let content = document.getElementById('write').value;
         word = content.substring(this.writtenCurrentIndex+1,this.writtenNextIndex);
         this.writtenCurrentIndex=this.writtenNextIndex;
         console.log(this.writtenCurrentIndex+" "+word);
-        return word;
+        this.writtenWord=word;
     },
-    findWords:function(){
+    findReadableWord:function(){
         let content = document.getElementById('read').innerHTML;
         let counter = this.readableCurrentIndex+1;
         let character=content[counter];        
@@ -38,11 +39,10 @@ let CurrentState={
         this.readableNextWord=word;
     },
     isSameWord:function(){
-        this.findWords()
+        this.findWrittenWord();
+        this.findReadableWord();
         let readable = this.readableWord;
-        let written = this.writtenWord();
-        console.log(readable);
-        console.log(written);
+        let written = this.writtenWord;
         if(readable==written)
             return true;
         else
@@ -168,12 +168,21 @@ function highlightNext(){
 }
 
 function typing(currentEle,e){
+    //increase keystrokes value '+1'
     let content= currentEle.value;
     let newKey= e.key;
     if(newKey==' ' && content!=""){
         CurrentState.writtenNextIndex=content.length;
+        if(CurrentState.isSameWord()){
+            // increase total
+        }else{
+            // increase error
+            // send writtenWord in errorword array
+        }
         highlightNext();
     }else if(e.which==8&&content[content.length-1]==' '){
         e.preventDefault();
+    }else{
+        // startTimer
     }
 }

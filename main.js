@@ -109,13 +109,32 @@ function start(){
 
 function deploy(){
     //put user detail in global object to use it on restart.
-    document.getElementById('read').innerHTML=storys.setLanguageLevel(userDetail.subject,userDetail.level);
+    let readPara=document.getElementById('read');
+    readPara.innerHTML=storys.setLanguageLevel(userDetail.subject,userDetail.level);
     document.getElementById('userName').innerHTML=userDetail.username;
     Timing.min = userDetail.timing.slice(0,2);
     document.getElementById('timers').value= Timing.min + ':00';
     Result.totalTime=Timing.min;
+    setLang(userDetail.subject);
+    readPara.style.fontFamily=userDetail.fontLanguage;
+    document.getElementById('write').style.fontFamily=userDetail.fontLanguage;
 }
 
+function setLang(subs) {
+    switch (subs) {
+        case 'English':
+            userDetail.fontLanguage='Calibri';
+            break;
+        case 'KrutiDev':
+            userDetail.fontLanguage='Kruti Dev 011';
+            break;
+        case 'Mangal':
+            userDetail.fontLanguage='Mangal';
+            break;
+        default:
+            break;
+    }
+}
 function countdown(time){
 
     let minuteOnes=time.slice(time.length-1,time.length);

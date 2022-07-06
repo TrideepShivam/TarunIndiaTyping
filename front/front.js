@@ -8,7 +8,6 @@ function frontPopup(order=false) {
                        `+getContent(order)+`
                     </div>
                     `
-                    dashborad(results={words:144,keys:1400,error:8,totalT:5,errorWord:['banana','explain','computer','group','banana','explain','computer','group']});
 }
 function getContent(o){
     if(!o){
@@ -73,7 +72,7 @@ function applyErrorDiv(errorTxt){
     main.setAttribute('id', 'errorContainer');
      document.body.appendChild(main);
      for(i=0;i<errorTxt.length;i++){
-       main.innerHTML= errorTxt[i]+' , '+main.innerHTML;
+       main.innerHTML= errorTxt[i]+' | '+main.innerHTML;
      }
      return main;
 }
@@ -87,12 +86,13 @@ function dashborad(results){
     }
     let accuracys=((results.words-results.error)*100/results.words).toString();
     resultEle[3].children[0].innerHTML=accuracys.slice(0,5);
-    resultEle[4].children[0].innerHTML=results.words/results.totalT;
+    resultEle[4].children[0].innerHTML=results.words/results.totalTime;
     resultEle[2].addEventListener('mouseenter',function(){
-        errorDivContainer=applyErrorDiv(results.errorWord);
+        errorDivContainer=applyErrorDiv(results.errorWords);
         this.style.cursor="pointer";
     });
    resultEle[2].addEventListener('mouseleave',function(){
         errorDivContainer.remove();
    });
+   clearInterval(setvalue);
 }

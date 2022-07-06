@@ -77,7 +77,8 @@ input[name=username]{width:420px;}
 .card p{margin:0;}
 
 #errorContainer{
-    width:40%;
+    width:auto;
+    max-width:40%;
     position: absolute;
     top:45%;
     right:5%;
@@ -90,5 +91,4 @@ input[name=username]{width:420px;}
     word-wrap:wrap;
     color:rgb(236, 236, 236);
     line-height: 1.3;
-
 }

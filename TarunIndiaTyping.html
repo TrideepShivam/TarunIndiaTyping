@@ -29,11 +29,11 @@
 				<input type="text" value="00:00" id='timers' disabled>
 			</div>
 			<div class="pointCase">
-				<label  onclick="dashborad(results={words:'',keys:'',error:''})" >WORDS</label>
-				<input type="text" value="000" disabled>
+				<label>WORDS</label>
+				<input id="totalWords" type="text" value="000" disabled>
 			</div>
 			<button id="restart" onclick="">RESTART</button>
-			<button class="btn" id="giveup" onclick="frontPopup(true)">GIVE UP</button>
+			<button class="btn" id="giveup" onclick="frontPopup(true);dashborad(Result);">GIVE UP</button>
 		</div>
 	</div>
 </body>

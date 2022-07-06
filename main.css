@@ -49,7 +49,7 @@ body{
 	flex-direction: column;
 	position: relative;
 }
-
+#read{font-size:25px;}
 .textContainer{
 	height:46%;
 	width:95%;
@@ -59,7 +59,7 @@ body{
 	font-size: 1.7vw;
 	overflow-y:auto;
 	border-top:2px solid var(--themecolor);
-
+	scroll-behavior: smooth;
 }
 #profileImg{
  height:16.5vw;

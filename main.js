@@ -1,4 +1,4 @@
-let CurrentState={
+let CurrentState={ // used to compare current word and keep the space index values duting typing.
     readableCurrentIndex:20,
     readableWord:"",
     readableNextIndex:0,
@@ -50,7 +50,7 @@ let CurrentState={
     }
 }
 
-const storys={
+const storys={//used to identify the readable content according to subject and level.
     Mangal:{
              level1:'level1 is good ',
              level2:'level222',
@@ -76,14 +76,26 @@ const storys={
         return this[languageName][levels];
     }
  }
-
-
-
+let scrollPixel=0;//to calculate scroll top for read Element;
+let userDetail={};//includes user's detail from first form.
+var setvalue=null;//used to aquire timer interval to stop and resume the timer
+let Timing={//containers time value with minute, tens value of second and ones value of second.
+    min:0,
+    secTens:0,
+    secOnes:0
+}
  
+let Result = {
+    words:0,
+    keystrokes:0,
+    error:0,
+    totalTime:0,
+    errorWords:[]
+}
+
 function start(){
     let entry=document.getElementsByClassName('dataEntry');
     if(entry[0].value!="" && entry[0].value!=" "){
-        let userDetail={};
         for(i=0;i<entry.length;i++){
             ele=entry[i];
             userDetail[ele.name]=ele.value;
@@ -95,15 +107,16 @@ function start(){
     }
 }
 
-function deploy(userDetails){
-    document.getElementById('read').innerHTML=storys.setLanguageLevel(userDetails.subject,userDetails.level);
-    document.getElementById('userName').innerHTML=userDetails.username;
-    document.getElementById('timers').value=userDetails.timing.slice(0,2) + ':00';
+function deploy(){
+    //put user detail in global object to use it on restart.
+    document.getElementById('read').innerHTML=storys.setLanguageLevel(userDetail.subject,userDetail.level);
+    document.getElementById('userName').innerHTML=userDetail.username;
+    Timing.min = userDetail.timing.slice(0,2);
+    document.getElementById('timers').value= Timing.min + ':00';
+    Result.totalTime=Timing.min;
 }
 
-var setvalue;
-
-function countdown(time,secondTens,secondOnes){
+function countdown(time){
 
     let minuteOnes=time.slice(time.length-1,time.length);
     let minuteTens;
@@ -112,7 +125,7 @@ function countdown(time,secondTens,secondOnes){
     else{minuteTens=time.slice(0,1);}
 
     let timeshow=document.getElementById('timers');
-    timeshow.value=minuteTens+''+minuteOnes+':'+secondTens+''+secondOnes;
+    timeshow.value=minuteTens+''+minuteOnes+':'+Timing.secTens+''+Timing.secOnes;
        
 
     setvalue=setInterval(function()
@@ -120,19 +133,20 @@ function countdown(time,secondTens,secondOnes){
         if(timeshow.value==0+''+0+':'+0+''+0)
         {
             frontPopup(true);
+            dashborad(Result);
             clearInterval(setvalue);  
         }
 
         else{  
-             if(secondOnes==0)
-                    secondOnes=9;
-                else{secondOnes--}
+             if(Timing.secOnes==0)
+                    Timing.secOnes=9;
+                else{Timing.secOnes--}
 
-            if(secondOnes==9)secondTens--;
+            if(Timing.secOnes==9)Timing.secTens--;
 
-            if(secondTens==-1){
+            if(Timing.secTens==-1){
                 minuteOnes--;
-                secondTens=5;
+                Timing.secTens=5;
             }
 
             if(minuteOnes==-1){
@@ -140,24 +154,10 @@ function countdown(time,secondTens,secondOnes){
                 minuteOnes=9;
             }
 
-            timeshow.value=minuteTens+''+minuteOnes+':'+secondTens+''+secondOnes;
+            timeshow.value=minuteTens+''+minuteOnes+':'+Timing.secTens+''+Timing.secOnes;
         }
     },1000);
 }
-
-document.addEventListener('keyup',function(event){
-    var x = event.key;
-    if(x=='Pause'){
-        clearInterval(setvalue);
-        let timeshowValue=document.getElementById('timers').value;
-        min=timeshowValue.slice(0,2);
-        secTens=timeshowValue.slice(3,4);
-        secOnes=timeshowValue.slice(4,5);
-    }
-    if(x=='ArrowRight'){        
-        countdown(min,secTens,secOnes);
-    }
-});
 
 function highlightNext(){
     let highlightedArea = document.getElementById('highlight').innerHTML;
@@ -168,21 +168,37 @@ function highlightNext(){
 }
 
 function typing(currentEle,e){
-    //increase keystrokes value '+1'
+    Result.keystrokes+=1;
     let content= currentEle.value;
     let newKey= e.key;
     if(newKey==' ' && content!=""){
+        let r = document.getElementById('readable');
+        if((Result.words+1)%60==0){
+            scrollPixel+=100;
+            r.scrollTop=scrollPixel;
+        }
         CurrentState.writtenNextIndex=content.length;
-        if(CurrentState.isSameWord()){
-            // increase total
-        }else{
-            // increase error
-            // send writtenWord in errorword array
+        Result.words+=1;
+        document.getElementById('totalWords').value=Result.words;
+        if(!CurrentState.isSameWord()){
+            Result.error+=1;
+            Result.errorWords.push(CurrentState.writtenWord);
         }
         highlightNext();
     }else if(e.which==8&&content[content.length-1]==' '){
         e.preventDefault();
+    }else if(newKey=='Pause'){
+        clearInterval(setvalue);
+        let timeshowValue=document.getElementById('timers').value;
+        Timing.min=timeshowValue.slice(0,2);
+        Timing.secTens=timeshowValue.slice(3,4);
+        Timing.secOnes=timeshowValue.slice(4,5);
+        setvalue=null;
     }else{
+        if(setvalue==null){
+            countdown(Timing.min);
+        }
         // startTimer
     }
 }
+// put all commented detail in user detail global object

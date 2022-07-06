@@ -37,10 +37,17 @@ body{
 	background-color: transparent;
 	outline:none;
 	border: none;
-	font-family: 'Kruti Dev 011';
 	color:white;
 	font-size: 1.7vw;
 	resize: none;
+}
+.forKrutiDev{	font-family: 'Kruti Dev 011';
+}
+.forEnglish{
+	font-family: 'Calibri';
+}
+.forMangal{
+	font-family: 'Mangal';
 }
 #userProfile{
 	width:19.8%;

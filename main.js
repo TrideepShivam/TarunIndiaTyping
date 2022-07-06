@@ -115,22 +115,18 @@ function deploy(){
     Timing.min = userDetail.timing.slice(0,2);
     document.getElementById('timers').value= Timing.min + ':00';
     Result.totalTime=Timing.min;
-    setLang(userDetail.subject);
-    readPara.style.fontFamily=userDetail.fontLanguage;
-    document.getElementById('write').style.fontFamily=userDetail.fontLanguage;
+    readPara.classList.add(setLang(userDetail.subject));
+    document.getElementById('write').classList.add(setLang(userDetail.subject));
 }
 
 function setLang(subs) {
     switch (subs) {
         case 'English':
-            userDetail.fontLanguage='Calibri';
-            break;
+            return 'forEnglish';
         case 'KrutiDev':
-            userDetail.fontLanguage='Kruti Dev 011';
-            break;
+            return 'forKrutiDev';
         case 'Mangal':
-            userDetail.fontLanguage='Mangal';
-            break;
+            return 'forMangal';
         default:
             break;
     }

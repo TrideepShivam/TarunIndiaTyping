@@ -71,7 +71,7 @@ function applyErrorDiv(errorTxt){
     let main = document.createElement('div');
     main.setAttribute('id', 'errorContainer');
      document.body.appendChild(main);
-     main.style.fontFamily=userDetail.fontLanguage;
+     main.classList.add(setLang(userDetail.subject));
      for(i=0;i<errorTxt.length;i++){
        main.innerHTML= errorTxt[i]+' '+main.innerHTML;
      }

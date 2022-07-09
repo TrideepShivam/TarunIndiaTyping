@@ -10,7 +10,6 @@ let CurrentState={ // used to compare current word and keep the space index valu
         let content = document.getElementById('write').value;
         word = content.substring(this.writtenCurrentIndex+1,this.writtenNextIndex);
         this.writtenCurrentIndex=this.writtenNextIndex;
-        console.log(this.writtenCurrentIndex+" "+word);
         this.writtenWord=word;
     },
     findReadableWord:function(){
@@ -18,7 +17,7 @@ let CurrentState={ // used to compare current word and keep the space index valu
         let counter = this.readableCurrentIndex+1;
         let character=content[counter];        
         let word="";
-        while(character!=" "){
+        while(character!=" "||character!=' '){
             word=word+character;
             counter++;
             character=content[counter];
@@ -30,7 +29,7 @@ let CurrentState={ // used to compare current word and keep the space index valu
         counter++;
         character=content[counter];
         word="";
-        while(character!=" "){
+        while(character!=" "||character!=' '){
             word=word+character;
             counter++;
             character=content[counter];
@@ -52,21 +51,21 @@ let CurrentState={ // used to compare current word and keep the space index valu
 
 const storys={//used to identify the readable content according to subject and level.
     Mangal:{
-             level1:'level1 is good ',
-             level2:'level222',
+        level1:`<span id='highlight'>एक</span> बार कुछ बंदरों को एक बड़े से पिंजरे में डाला गया और वहां पर एक सीढी लगाई गई| सीढी के ऊपरी भाग पर कुछ केले लटका दिए गए|उन केलों को खाने के लिए एक बन्दर सीढी के पास पहुंचा| जैसे ही वह बन्दर सीढी पर चढ़ने लगा, उस पर बहुत सारा ठंडा पानी गिरा दिया गया और उसके साथ-साथ बाकी बंदरों पर भी पानी गिरा दिया गया| पानी डालने पर वह बन्दर भाग कर एक कोने में चला गया| थोड़ी देर बाद एक दूसरा बन्दर सीढी के पास पहुंचा| वह जैसे ही सीढी के ऊपर चढ़ने लगा, फिर से बन्दर पर ठंडा पानी गिरा दिया गया और इसकी सजा बाकि बंदरों को भी मिली और साथ-साथ दूसरे बंदरो पर भी ठंडा पानी गिरा दिया गया| ठन्डे पानी के कारण सारे बन्दर भाग कर एक कोने में चले गए| यह प्रक्रिया चलती रही और जैसे ही कोई बन्दर सीढी पर केले खाने के लिए चढ़ता, उस पर और साथ-साथ बाकि बंदरों को इसकी सजा मिलती और उन पर ठंडा पानी डाल दिया जाता| बहुत बार ठन्डे पानी की सजा मिलने पर बन्दर समझ गए कि अगर कोई भी उस सीढी पर चढ़ने की कोशिश करेगा तो इसकी सजा सभी को मिलेगी और उन सभी पर ठंडा पानी डाल दिया जाएगा| अब जैसे ही कोई बन्दर सीढी के पास जाने की कोशिश करता तो बाकी सारे बन्दर उसकी पिटाई कर देते और उसे सीढी के पास जाने से रोक देते| थोड़ी देर बाद उस बड़े से पिंजरे में से एक बन्दर को निकाल दिया गया और उसकी जगह एक नए बन्दर को डाला गया| नए बन्दर की नजर केलों पर पड़ी| नया बन्दर वहां की परिस्थिति के बारे में नहीं जानता था इसलिए वह केले खाने के लिए सीढी की तरफ भागा| जैसे ही वह बन्दर उस सीढी की तरफ भागा, बाकि सारे बंदरों ने उसकी पिटाई कर दी| `,
+        level2:`<span id='highlight'>एक</span> नदी के किनारे एक जामुन के पेड़ पर एक बन्दर रहता था जिसकी मित्रता उस नदी में रहने वाले मगरमच्छ के साथ हो गयी। वह बन्दर उस मगरमच्छ को भी खाने के लिए जामुन देता रहता था। एक दिन उस मगरमच्छ ने कुछ जामुन अपनी पत्नी को भी खिलाये। स्वादिष्ट जामुन खाने के बाद उसने यह सोचकर कि रोज़ाना ऐसे मीठे फल खाने वाले का दिल भी खूब मीठा होगा, अपने पति से उस बन्दर का दिल लाने की ज़िद्द की। पत्नी के हाथों मजबूर हुए मगरमच्छ ने भी एक चाल चली और बन्दर से कहा कि उसकी भाभी उसे मिलना चाहती है, इसलिए वह उसकी पीठ पर बैठ जाये ताकि सुरक्षित उसके घर पहुँच जाए। बन्दर भी अपने मित्र की बात का भरोसा कर, पेड़ से नदी में कूदा और उसकी पीठ पर सवार हो गया। जब वे नदी के बीचों-बीच पहुंचे तो मगरमच्छ ने सोचा कि अब बन्दर को सही बात बताने में कोई हानि नहीं और उसने भेद खोल दिया कि उसकी पत्नी उसका दिल खाना चाहती है। बन्दर को धक्का तो लगा लेकिन उसने अपना धैर्य नहीं खोया और तपाक से बोला- 'ओह! तुमने यह बात मुझे पहले क्यों नहीं बताई क्योंकि मैंने तो अपना दिल जामुन के पेड़ की खोखल में सम्भाल कर रखा है। अब जल्दी से मुझे वापस नदी के किनारे ले चलो ताकि मैं अपना दिल लाकर अपनी भाभी को उपहार में देकर उसे खुश कर सकूं।' मूर्ख मगरमच्छ बन्दर को जैसे ही नदी-किनारे ले कर आया बन्दर ने ज़ोर से जामुन के पेड़ पर छलांग लगाई और क्रोध में भरकर बोला– 'अरे मूर्ख, दिल के बिना भी क्या कोई ज़िन्दा रह सकता है? जा, आज से तेरी-मेरी दोस्ती समाप्त।' मगरमच्‍छ निराश होकर घर चला जाता है। मित्रो, बचपन में पढ़ी यह कहानी आज भी मुसीबत के क्षणों में धैर्य रखने की प्रेरणा देती है ताकि हम कठिन समय का डट कर मुकाबला कर सकें। दूसरे, मित्रता का सदैव सम्मान करें। `,
              level3:'level3',
              level4:'level4',
              level5:'level5'
          },
     KrutiDev:{
-             level1:`<span id='highlight'>एक</span> बार कुछ बंदरों को एक बड़े से पिंजरे में डाला गया और वहां पर एक सीढी लगाई गई| सीढी के ऊपरी भाग पर कुछ केले लटका दिए गए|उन केलों को खाने के लिए एक बन्दर सीढी के पास पहुंचा| जैसे ही वह बन्दर सीढी पर चढ़ने लगा, उस पर बहुत सारा ठंडा पानी गिरा दिया गया और उसके साथ-साथ बाकी बंदरों पर भी पानी गिरा दिया गया| पानी डालने पर वह बन्दर भाग कर एक कोने में चला गया| थोड़ी देर बाद एक दूसरा बन्दर सीढी के पास पहुंचा| वह जैसे ही सीढी के ऊपर चढ़ने लगा, फिर से बन्दर पर ठंडा पानी गिरा दिया गया और इसकी सजा बाकि बंदरों को भी मिली और साथ-साथ दूसरे बंदरो पर भी ठंडा पानी गिरा दिया गया| ठन्डे पानी के कारण सारे बन्दर भाग कर एक कोने में चले गए| यह प्रक्रिया चलती रही और जैसे ही कोई बन्दर सीढी पर केले खाने के लिए चढ़ता, उस पर और साथ-साथ बाकि बंदरों को इसकी सजा मिलती और उन पर ठंडा पानी डाल दिया जाता| बहुत बार ठन्डे पानी की सजा मिलने पर बन्दर समझ गए कि अगर कोई भी उस सीढी पर चढ़ने की कोशिश करेगा तो इसकी सजा सभी को मिलेगी और उन सभी पर ठंडा पानी डाल दिया जाएगा| अब जैसे ही कोई बन्दर सीढी के पास जाने की कोशिश करता तो बाकी सारे बन्दर उसकी पिटाई कर देते और उसे सीढी के पास जाने से रोक देते| थोड़ी देर बाद उस बड़े से पिंजरे में से एक बन्दर को निकाल दिया गया और उसकी जगह एक नए बन्दर को डाला गया| नए बन्दर की नजर केलों पर पड़ी| नया बन्दर वहां की परिस्थिति के बारे में नहीं जानता था इसलिए वह केले खाने के लिए सीढी की तरफ भागा| जैसे ही वह बन्दर उस सीढी की तरफ भागा, बाकि सारे बंदरों ने उसकी पिटाई कर दी|`,
+             level1:`<span id='highlight'>एक</span> बार कुछ बंदरों को एक बड़े से पिंजरे में डाला गया और वहां पर एक सीढी लगाई गई| सीढी के ऊपरी भाग पर कुछ केले लटका दिए गए|उन केलों को खाने के लिए एक बन्दर सीढी के पास पहुंचा| जैसे ही वह बन्दर सीढी पर चढ़ने लगा, उस पर बहुत सारा ठंडा पानी गिरा दिया गया और उसके साथ-साथ बाकी बंदरों पर भी पानी गिरा दिया गया| पानी डालने पर वह बन्दर भाग कर एक कोने में चला गया| थोड़ी देर बाद एक दूसरा बन्दर सीढी के पास पहुंचा| वह जैसे ही सीढी के ऊपर चढ़ने लगा, फिर से बन्दर पर ठंडा पानी गिरा दिया गया और इसकी सजा बाकि बंदरों को भी मिली और साथ-साथ दूसरे बंदरो पर भी ठंडा पानी गिरा दिया गया| ठन्डे पानी के कारण सारे बन्दर भाग कर एक कोने में चले गए| यह प्रक्रिया चलती रही और जैसे ही कोई बन्दर सीढी पर केले खाने के लिए चढ़ता, उस पर और साथ-साथ बाकि बंदरों को इसकी सजा मिलती और उन पर ठंडा पानी डाल दिया जाता| बहुत बार ठन्डे पानी की सजा मिलने पर बन्दर समझ गए कि अगर कोई भी उस सीढी पर चढ़ने की कोशिश करेगा तो इसकी सजा सभी को मिलेगी और उन सभी पर ठंडा पानी डाल दिया जाएगा| अब जैसे ही कोई बन्दर सीढी के पास जाने की कोशिश करता तो बाकी सारे बन्दर उसकी पिटाई कर देते और उसे सीढी के पास जाने से रोक देते| थोड़ी देर बाद उस बड़े से पिंजरे में से एक बन्दर को निकाल दिया गया और उसकी जगह एक नए बन्दर को डाला गया| नए बन्दर की नजर केलों पर पड़ी| नया बन्दर वहां की परिस्थिति के बारे में नहीं जानता था इसलिए वह केले खाने के लिए सीढी की तरफ भागा| जैसे ही वह बन्दर उस सीढी की तरफ भागा, बाकि सारे बंदरों ने उसकी पिटाई कर दी| `,
              level2:'level2',
              level3:'level3',
              level4:'level4',
              level5:'level5'
          },
     English:{
-             level1:`<span id='highlight'>A</span> long time ago, during a devastating spell of dry weather, there was a thirsty crow who was desperate for a drink of water. The poor crow flew and flew in search of a means to quench his thirst. From one place to another he went, until, at long last, when he could fly no further, he came upon a large pitcher of water at the base of a tree. Overjoyed, the thirsty crow thrust its jet-black beak inside to drink his fill. But, alas, the pitcher had a narrow neck! Try as he might, the despairing crow couldn’t get his head far enough inside. To his dismay, he realized the water was out of reach. The thirsty crow cried out and flapped his wings in anguish. He attempted to knock the pitcher over. But to no avail. It was too heavy for his weary, dehydrated body to budge. The crow was on the verge of exhaustion and ready to fly elsewhere. But then an idea came to him. Around the base of the pitcher sat some small round pebbles. Picking them up, one by one, the thirsty crow dropped them into the pitcher. Again and again he placed these stones inside. And with every extra pebble, the water level began to rise. His idea worked. Eventually, after much toil, the water rose so high inside the pitcher that the clever crow was able to drink his fill and sate his thirst for good.`,
+             level1:`<span id='highlight'>A</span> long time ago, during a devastating spell of dry weather, there was a thirsty crow who was desperate for a drink of water. The poor crow flew and flew in search of a means to quench his thirst. From one place to another he went, until, at long last, when he could fly no further, he came upon a large pitcher of water at the base of a tree. Overjoyed, the thirsty crow thrust its jet-black beak inside to drink his fill. But, alas, the pitcher had a narrow neck! Try as he might, the despairing crow couldn’t get his head far enough inside. To his dismay, he realized the water was out of reach. The thirsty crow cried out and flapped his wings in anguish. He attempted to knock the pitcher over. But to no avail. It was too heavy for his weary, dehydrated body to budge. The crow was on the verge of exhaustion and ready to fly elsewhere. But then an idea came to him. Around the base of the pitcher sat some small round pebbles. Picking them up, one by one, the thirsty crow dropped them into the pitcher. Again and again he placed these stones inside. And with every extra pebble, the water level began to rise. His idea worked. Eventually, after much toil, the water rose so high inside the pitcher that the clever crow was able to drink his fill and sate his thirst for good. `,
              level2:'level2',
              level3:'level3',
              level4:'level4',
@@ -77,7 +76,15 @@ const storys={//used to identify the readable content according to subject and l
     }
  }
 let scrollPixel=0;//to calculate scroll top for read Element;
-let userDetail={};//includes user's detail from first form.
+let userDetail={
+    space:function(){
+        if(this.subject!='Mangal'){
+            return ' ';
+        }else{
+            return ' ';
+        }
+    }
+};//includes user's detail from first form.
 var setvalue=null;//used to aquire timer interval to stop and resume the timer
 let Timing={//containers time value with minute, tens value of second and ones value of second.
     min:0,
@@ -177,6 +184,14 @@ function countdown(time){
 function highlightNext(){
     let highlightedArea = document.getElementById('highlight').innerHTML;
     let content = document.getElementById('read');
+    //used to identify that how many words there in the total story.
+    // let c=content.innerHTML;
+    // let count=0;
+    // for(i=0;i<c.length;i++){
+    //     if(c[i]==' '){count++;}
+    // }
+    // console.log(count);
+
     let nonHighlightedArea = content.innerHTML.substring(CurrentState.readableNextIndex);
     content.innerHTML='<span id="highlight">'+highlightedArea+' '+CurrentState.readableNextWord+'</span>'+nonHighlightedArea;
     CurrentState.readableCurrentIndex-=7;
@@ -186,35 +201,47 @@ function typing(currentEle,e){
     Result.keystrokes+=1;
     let content= currentEle.value;
     let newKey= e.key;
-    if(newKey==' ' && content!=""){
-        let r = document.getElementById('readable');
-        if((Result.words+1)%60==0){
-            scrollPixel+=100;
-            r.scrollTop=scrollPixel;
+    if(newKey!='Backspace'){
+        let condition=null;
+        if(userDetail.subject!='Mangal'){
+            condition=newKey==' '&&content!="";
+        }else{
+            condition=content[content.length-1]==' '&&newKey=='Process';
         }
-        CurrentState.writtenNextIndex=content.length;
-        Result.words+=1;
-        document.getElementById('totalWords').value=Result.words;
-        if(!CurrentState.isSameWord()){
-            Result.error+=1;
-            eWord='['+CurrentState.readableWord+' : '+CurrentState.writtenWord+']'
-            Result.errorWords.push(eWord);
+        if(condition){
+            let r = document.getElementById('readable');
+            if((Result.words+1)%80==0){
+                scrollPixel+=150;
+                r.scrollTop=scrollPixel;
+            }
+            CurrentState.writtenNextIndex=content.length-1;
+            Result.words+=1;
+            document.getElementById('totalWords').value=Result.words;
+            if(!CurrentState.isSameWord()){
+                Result.error+=1;
+                eWord='['+CurrentState.readableWord+' : '+CurrentState.writtenWord+']'
+                Result.errorWords.push(eWord);
+            }
+            highlightNext();
+        }else if(newKey=='Pause'){
+            clearInterval(setvalue);
+            let timeshowValue=document.getElementById('timers').value;
+            Timing.min=timeshowValue.slice(0,2);
+            Timing.secTens=timeshowValue.slice(3,4);
+            Timing.secOnes=timeshowValue.slice(4,5);
+            setvalue=null;
+        }else{
+            if(setvalue==null){
+                countdown(Timing.min);
+            }
+            // startTimer
         }
-        highlightNext();
-    }else if(e.which==8&&content[content.length-1]==' '){
+    }
+}
+
+function backspacePrevent(e,content){
+    if(e.key=='Backspace'&&content[content.length-1]==' '){
         e.preventDefault();
-    }else if(newKey=='Pause'){
-        clearInterval(setvalue);
-        let timeshowValue=document.getElementById('timers').value;
-        Timing.min=timeshowValue.slice(0,2);
-        Timing.secTens=timeshowValue.slice(3,4);
-        Timing.secOnes=timeshowValue.slice(4,5);
-        setvalue=null;
-    }else{
-        if(setvalue==null){
-            countdown(Timing.min);
-        }
-        // startTimer
     }
 }
 // put all commented detail in user detail global object

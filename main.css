@@ -10,7 +10,9 @@ body{
 	background-color:dodgerblue;
 	overflow-x:hidden;
 }
-#highlight{color:var(--themecolor);}
+#highlight{
+	color:var(--themecolor);
+}
 #main{
 	height:100%;
 	width:100%;
@@ -20,7 +22,6 @@ body{
 	justify-content: space-between;
 }
 .container{
-
 	background-color: #191919;
 	height:100%;
 }
@@ -67,6 +68,8 @@ body{
 	overflow-y:auto;
 	border-top:2px solid var(--themecolor);
 	scroll-behavior: smooth;
+	word-wrap: wrap;
+	text-indent:20px;
 }
 #profileImg{
  height:16.5vw;

@@ -1,6 +1,11 @@
 ::-webkit-scrollbar{width:5px;}
 ::-webkit-scrollbar-track{background:rgba(0,0,0,.3);}
 ::-webkit-scrollbar-thumb{background:black;}
+@font-face {
+   	font-family: hindiKrutiDev; 
+	src: url('./k10/k010.eot');
+	src: local('k010'), url('./k10/k010.woff') format('woff'), url('./k10/k010.ttf') format('truetype');
+}
 :root{
     --themecolor:#1dd5e6;
 }
@@ -39,10 +44,10 @@ body{
 	outline:none;
 	border: none;
 	color:white;
-	font-size: 1.7vw;
 	resize: none;
+	font-size:28px;
 }
-.forKrutiDev{	font-family: 'Kruti Dev 011';
+.forKrutiDev{	font-family: hindiKrutiDev;
 }
 .forEnglish{
 	font-family: 'Calibri';
@@ -57,16 +62,16 @@ body{
 	flex-direction: column;
 	position: relative;
 }
-#read{font-size:25px;}
 .textContainer{
 	height:46%;
 	width:95%;
 	padding:1% 2.5%;
 	background-color: #191919;
+	font-size:30px;
 	color:silver;
-	font-size: 1.7vw;
 	overflow-y:auto;
 	border-top:2px solid var(--themecolor);
+	-webkit-scroll-behavior: smooth;
 	scroll-behavior: smooth;
 	word-wrap: wrap;
 	text-indent:20px;

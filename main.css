@@ -17,6 +17,7 @@ body{
 }
 #highlight{
 	color:var(--themecolor);
+	/* color:silver; /* to create without highlight word */ 
 }
 #main{
 	height:100%;

@@ -1,13 +1,22 @@
 function frontPopup(order=false) {
-    
+    let date=new Date();
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
-    main.innerHTML=`
-                    <div id="popup">
-                       `+getContent(order)+`
-                    </div>
-                    `
+    if(date.getDay()!=6){
+        main.innerHTML=`
+                        <div id="popup">
+                        `+getContent(order)+`
+                        </div>
+                        `;
+    }else{
+        main.innerHTML=`
+                        <div id="popup">
+                        <p id="highlight">App will Start only on</p>
+                            <h1 class="themeText"><b>SATURDAY</b></h1>
+                        </div>
+                        `
+    }
 }
 function getContent(o){
     if(!o){

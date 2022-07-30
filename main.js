@@ -211,7 +211,7 @@ function typing(currentEle,e){
         if(userDetail.subject!='Mangal'){
             condition=newKey==' '&&content!="";
         }else{
-            condition=content[content.length-1]==' '&&newKey=='Process';
+            condition=content[content.length-2]==' '&&newKey=='Process';
         }
         if(condition){
             let r = document.getElementById('readable');
@@ -219,7 +219,12 @@ function typing(currentEle,e){
                 scrollPixel+=140;
                 r.scrollTop=scrollPixel;
             }
-            CurrentState.writtenNextIndex=content.length-1;
+            if(userDetail.subject!='Mangal'){
+                CurrentState.writtenNextIndex=content.length-1;
+            }else{
+                CurrentState.writtenNextIndex=content.length-2;
+            }
+            
             Result.words+=1;
             document.getElementById('totalWords').value=Result.words;
             if(!CurrentState.isSameWord()){

@@ -4,17 +4,16 @@ function frontPopup(order=false) {
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
     if(date.getDay()!=6){
-        main.innerHTML=`
+        main.innerHTML=`<img src='frontImg.png' width='35%'>
                         <div id="popup">
                         `+getContent(order)+`
                         </div>
                         `;
-                        document.getElementById('popup').style.cssText="background-image:url('frontImg.png');background-size:cover;"
     }else{
         main.innerHTML=`
                         <div id="popup">
                         <p id="highlight">App will Start only on</p>
-                            <h1 class="themeText"><b>SATURDAY</b></h1>
+                            <h1 class="specialText"><b>SATURDAY</b></h1>
                         </div>
                         `;
         document.getElementById('popup').style.cssText="background-image:url('saturdayImg.png');background-size:cover;justify-content:flex-start;"
@@ -24,7 +23,7 @@ function getContent(o){
     if(!o){
         return `
                 <h1 class="themeText">Tarun India</h1>
-                <input name="username" class="dataEntry" placeholder="Name">
+                <input name="username" class="dataEntry" placeholder="Roll Number">
                 <select class="dataEntry" name="subject">
                     <option>English</option>
                     <option>KrutiDev</option>
@@ -43,6 +42,12 @@ function getContent(o){
                         <option>level4</option>
                         <option>level5</option>
                 </select>
+                <div id="restrictionContainer">
+                    <div class="containerCircleCheckboxgk">
+                        <input type="checkbox" id="circle">
+                        <label for="circle">Prevet Backspace</label>
+                    </div>
+                </div>
                 <button class="btn" onclick="start()">Start Test</button>
                 `;
     }else{

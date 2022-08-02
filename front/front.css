@@ -2,8 +2,9 @@
     width:100%;
     height:100%;
     position:absolute;
-    background-color:rgba(0,0,0,.9);
+    background-color:rgba(0,0,0,.95);
     display:flex;
+    gap:10%;
     justify-content: center;
     align-items: center;
     z-index:10;
@@ -18,23 +19,29 @@
     background-color: #050505;
     border:1px solid var(--themecolor);
     border-radius:10px;
-    row-gap: 5px;
+    row-gap: -1px;
     animation:themeStyle 1s;
 }
 .themeText{
     color:var(--themecolor);
-    font-size: 50px;
+    font-size: 60px;
     margin:10px;
 }
-input[name=username]{width:420px;}
+.specialText{
+    font-size:80px;
+    color:var(--themecolor);
+    margin:0;
+    text-shadow: 0 0 20px rgba(0, 255, 255,.4);
+}
+input[name=username]{width:428px;}
 .dataEntry{
     background-color: #0a0a0a;
     color:white;
     border:1px solid transparent;
     border-radius: 10px;
-    font-size:20px;
+    font-size:18px;
     width:450px;
-    padding:12px;
+    padding:10px;
     margin:10px;
 }
 .dataEntry:focus{
@@ -91,4 +98,45 @@ input[name=username]{width:420px;}
     word-wrap:wrap;
     color:rgb(236, 236, 236);
     line-height: 1.3;
+}
+
+
+/* checkbox */
+.containerCircleCheckboxgk{
+  margin:5px;
+}
+.containerCircleCheckboxgk input{
+  display: none;
+}
+.containerCircleCheckboxgk label{
+  position: relative;
+  color:white;
+}
+.containerCircleCheckboxgk label::before{
+  content: "";
+  background: url("tik.png");
+  background-position: center;
+  background-size: contain;
+  width: 28px;
+  height: 28px;
+  position: absolute;
+  left: -32px;
+  top: -5.5px;
+  transform: scale(0) rotateZ(180deg);
+  transition: all 0.4s cubic-bezier(0.54,0.01,0,1.49);
+}
+.containerCircleCheckboxgk input:checked + label::before{
+  transform: scale(1) rotateZ(0deg);
+}
+.containerCircleCheckboxgk input:checked + label::after{transform: scale(1.2);}
+.containerCircleCheckboxgk label::after{
+  content: "";
+  border: 2px solid #27ae60;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  left:-30px;
+  top:-4px;
+  border-radius: 50%;
+transition:.3s;
 }

@@ -105,8 +105,14 @@ function start(){
     if(entry[0].value!="" && entry[0].value!=" "){
         for(i=0;i<entry.length;i++){
             ele=entry[i];
-            userDetail[ele.name]=ele.value;
+            if(ele.type=="checkbox" || ele.type=="radio"){
+                userDetail[ele.name]=ele.checked;
+            }
+            else{
+                userDetail[ele.name]=ele.value;
+            }
         }
+        console.log(userDetail);
         deploy(userDetail);
         document.getElementsByClassName('popupContainer')[0].remove();
     }else{

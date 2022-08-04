@@ -1,9 +1,9 @@
 function frontPopup(order=false) {
-    let date=new Date(2022,07,30);
+    let date=new Date();
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
-    if(date.getDay()!=6){
+    if(date.getDay()==6){
         main.innerHTML=`<img src='frontImg.png' width='35%'>
                         <div id="popup">
                         `+getContent(order)+`
@@ -22,8 +22,8 @@ function frontPopup(order=false) {
 function getContent(o){
     if(!o){
         return `
-                <h1 class="themeText">Tarun India</h1>
-                <input name="username" class="dataEntry" placeholder="Roll Number">
+                <h1 class="specialText">Tarun India</h1>
+                <input type="password" id="username" name="username" class="dataEntry" placeholder="Roll Number">
                 <select class="dataEntry" name="subject">
                     <option>English</option>
                     <option>KrutiDev</option>
@@ -43,10 +43,14 @@ function getContent(o){
                         <option>level5</option>
                 </select>
                 <div id="restrictionContainer">
-                    <div class="containerCircleCheckboxgk">
-                        <input type="checkbox" id="circle">
-                        <label for="circle">Prevet Backspace</label>
-                    </div>
+                    <div class="checkboxMiddleSection" onclick="checkboxWithSliderStyle(this,'green')">
+                        <input type="checkbox" name="backspace" class="dataEntry">
+                        <button class="checkboxSlider">on</button>
+                    </div>Backspace  
+                    <div class="checkboxMiddleSection" onclick="checkboxWithSliderStyle(this,'green')">
+                        <input type="checkbox" name="highlight" class="dataEntry">
+                        <button class="checkboxSlider">on</button>
+                    </div>Highlight  
                 </div>
                 <button class="btn" onclick="start()">Start Test</button>
                 `;
@@ -112,4 +116,21 @@ function dashborad(results){
         errorDivContainer.remove();
    });
    clearInterval(setvalue);
+}
+
+function checkboxWithSliderStyle(container,color){
+	let ele = container.children;
+	let slider=ele[1];
+	let cb=ele[0];
+	if(!cb.checked){
+		slider.style.cssText="transform:translatex(22px);border:2px solid rgb(0,255,200);box-shadow:0 0 2px black inset,0 0 3px rgb(0,255,200);";
+		container.style.backgroundColor=color;
+		cb.checked=true;
+        slider.innerHTML="off";
+	}else{
+		slider.style.cssText="transform:translatex(0px);border:2px solid rgb(255,255,255);box-shadow:0 0 2px black inset,0 0 3px rgba(0,0,0,.4);";
+		container.style.backgroundColor="silver";
+		cb.checked=false;
+        slider.innerHTML="on";
+	}			
 }

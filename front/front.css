@@ -21,26 +21,30 @@
     border-radius:10px;
     row-gap: -1px;
     animation:themeStyle 1s;
-}
-.themeText{
-    color:var(--themecolor);
-    font-size: 60px;
-    margin:10px;
+    color:white;
 }
 .specialText{
     font-size:80px;
     color:var(--themecolor);
-    margin:0;
-    text-shadow: 0 0 20px rgba(0, 255, 255,.4);
+    margin:5px;
+    text-shadow: 0 0 25px rgba(0, 255, 255,.2);
 }
-input[name=username]{width:428px;}
-.dataEntry{
+#restrictionContainer{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    margin:20px;
+    gap:10px;
+    font-size:18px;
+}
+#username{width:378px;}
+.dataEntry:not(.checkboxMiddleSection input){
     background-color: #0a0a0a;
     color:white;
     border:1px solid transparent;
     border-radius: 10px;
     font-size:18px;
-    width:450px;
+    width:400px;
     padding:10px;
     margin:10px;
 }
@@ -102,41 +106,29 @@ input[name=username]{width:428px;}
 
 
 /* checkbox */
-.containerCircleCheckboxgk{
-  margin:5px;
+
+.checkboxMiddleSection{
+	width:40px;
+	height:18px;
+	cursor:hand;
+  margin-left:15px;
+	background:silver;
+  position:relative;
+  border-radius: 20px;
+	transition:background-color .6s;
 }
-.containerCircleCheckboxgk input{
-  display: none;
-}
-.containerCircleCheckboxgk label{
-  position: relative;
-  color:white;
-}
-.containerCircleCheckboxgk label::before{
-  content: "";
-  background: url("tik.png");
-  background-position: center;
-  background-size: contain;
-  width: 28px;
-  height: 28px;
-  position: absolute;
-  left: -32px;
-  top: -5.5px;
-  transform: scale(0) rotateZ(180deg);
-  transition: all 0.4s cubic-bezier(0.54,0.01,0,1.49);
-}
-.containerCircleCheckboxgk input:checked + label::before{
-  transform: scale(1) rotateZ(0deg);
-}
-.containerCircleCheckboxgk input:checked + label::after{transform: scale(1.2);}
-.containerCircleCheckboxgk label::after{
-  content: "";
-  border: 2px solid #27ae60;
-  width: 20px;
-  height: 20px;
-  position: absolute;
-  left:-30px;
-  top:-4px;
-  border-radius: 50%;
-transition:.3s;
+.checkboxMiddleSection input[type=checkbox]{appearance:none;}
+.checkboxSlider{
+	border:none;
+	height:30px;
+	width:30px;
+	border:1px solid rgb(255,255,255);
+  position:absolute;
+  left:-5px;
+  top:-6px;;
+	border-radius:50%;
+  margin:0;
+	box-shadow:0 0 2px black inset,0 0 3px rgba(0,0,0,.4);
+	cursor:hand;
+	transition:all .4s;
 }

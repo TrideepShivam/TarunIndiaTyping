@@ -1,23 +1,12 @@
 function frontPopup(order=false) {
-    let date=new Date();
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
-    if(date.getDay()==6){
-        main.innerHTML=`<img src='frontImg.png' width='35%'>
-                        <div id="popup">
-                        `+getContent(order)+`
-                        </div>
-                        `;
-    }else{
-        main.innerHTML=`
-                        <div id="popup">
-                        <p id="highlight">App will Start only on</p>
-                            <h1 class="specialText"><b>SATURDAY</b></h1>
-                        </div>
-                        `;
-        document.getElementById('popup').style.cssText="background-image:url('saturdayImg.png');background-size:cover;justify-content:flex-start;"
-    }
+    main.innerHTML=`<img src='frontImg.png' width='35%'>
+                    <div id="popup">
+                    `+getContent(order)+`
+                    </div>
+                    `;
 }
 function getContent(o){
     if(!o){

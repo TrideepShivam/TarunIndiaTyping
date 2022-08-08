@@ -101,22 +101,41 @@ let Result = {
 }
 
 function start(){
-    let entry=document.getElementsByClassName('dataEntry');
-    if(entry[0].value!="" && entry[0].value!=" "){
-        for(i=0;i<entry.length;i++){
-            ele=entry[i];
-            if(ele.type=="checkbox" || ele.type=="radio"){
-                userDetail[ele.name]=ele.checked;
+    let today=new Date();
+    if(today.getDay()==6){
+        let entry=document.getElementsByClassName('dataEntry');
+        if(entry[0].value!="" && entry[0].value!=" "){
+            for(i=0;i<entry.length;i++){
+                ele=entry[i];
+                if(ele.type=="checkbox" || ele.type=="radio"){
+                    userDetail[ele.name]=ele.checked;
+                }
+                else{
+                    userDetail[ele.name]=ele.value;
+                }
             }
-            else{
-                userDetail[ele.name]=ele.value;
-            }
+            deploy(userDetail);
+            document.getElementsByClassName('popupContainer')[0].remove();
+        }else{
+            alert("Please Write Your name Correctly.");
         }
-        console.log(userDetail);
-        deploy(userDetail);
-        document.getElementsByClassName('popupContainer')[0].remove();
     }else{
-        alert("Please Write Your name Correctly.");
+        let main = document.getElementsByClassName('popupContainer')[0];
+        main.innerHTML=`
+                        <div id="popup">
+                            <p id="highlight">App will Start only on</p>
+                            <h1 class="specialText"><b>शनिवार</b></h1>
+                            <div id="animationContainer">
+                                <div class="animationBox" id="ab10">ध</div>
+                                <div class="animationBox" id="ab9">न्‍य</div>
+                                <div class="animationBox" id="ab8">वा</div>
+                                <div class="animationBox" id="ab7">द</div>
+                                <div class="animationBox" id="ab6">म्</div>
+                            </div>
+                            <button class="btn" id="btnClose" onclick="window.close();">close</btn>
+                        </div>
+                        `;
+        document.getElementById('popup').style.cssText="background-image:url('saturdayImg.png');background-size:cover;justify-content:flex-start;";
     }
 }
 

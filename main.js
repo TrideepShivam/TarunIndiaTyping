@@ -17,19 +17,21 @@ let CurrentState={ // used to compare current word and keep the space index valu
         let counter = this.readableCurrentIndex+1;
         let character=content[counter];        
         let word="";
-        while(character!=" "||character!=' '){
+        while(character!=" "){
             word=word+character;
             counter++;
             character=content[counter];
         }
         this.readableCurrentIndex=counter;
+        console.log(word);
         word=word.substring(0,word.length-7);
+        console.log(word);
         this.readableWord=word;
 
         counter++;
         character=content[counter];
         word="";
-        while(character!=" "||character!=' '){
+        while(character!=" "){
             word=word+character;
             counter++;
             character=content[counter];
@@ -42,6 +44,7 @@ let CurrentState={ // used to compare current word and keep the space index valu
         this.findReadableWord();
         let readable = this.readableWord;
         let written = this.writtenWord;
+        console.log(readable+' '+written+' '+CurrentState.readableCurrentIndex+' '+CurrentState.readableNextIndex);
         if(readable==written)
             return true;
         else
@@ -102,7 +105,7 @@ let Result = {
 
 function start(){
     let today=new Date();
-    if(today.getDay()==6){
+    if(today.getDay()==4){
         let entry=document.getElementsByClassName('dataEntry');
         if(entry[0].value!="" && entry[0].value!=" "){
             for(i=0;i<entry.length;i++){
@@ -149,6 +152,11 @@ function deploy(){
     Result.totalTime=Timing.min;
     readPara.classList.add(setLang(userDetail.subject));
     document.getElementById('write').classList.add(setLang(userDetail.subject));
+    if(userDetail.highlight){
+        document.getElementById('highlight').removeAttribute('id'); /* change the id because the style is merged as inline style in highlight */
+        CurrentState.readableCurrentIndex=5;
+    }
+    
 }
 
 function setLang(subs) {
@@ -164,6 +172,7 @@ function setLang(subs) {
             break;
     }
 }
+
 function countdown(time){
 
     let minuteOnes=time.slice(time.length-1,time.length);
@@ -208,7 +217,7 @@ function countdown(time){
 }
 
 function highlightNext(){
-    let highlightedArea = document.getElementById('highlight').innerHTML;
+    let highlightedArea = document.querySelector('#read span').innerHTML;
     let content = document.getElementById('read');
     //used to identify that how many words there in the total story.
     // let c=content.innerHTML;
@@ -219,7 +228,11 @@ function highlightNext(){
     // console.log(count);
 
     let nonHighlightedArea = content.innerHTML.substring(CurrentState.readableNextIndex);
-    content.innerHTML='<span id="highlight">'+highlightedArea+' '+CurrentState.readableNextWord+'</span>'+nonHighlightedArea;
+    if(!userDetail.highlight){
+        content.innerHTML='<span id="highlight">'+highlightedArea+' '+CurrentState.readableNextWord+'</span>'+nonHighlightedArea;
+    }else{/* if user prevent highlights*/
+        content.innerHTML='<span>'+highlightedArea+' '+CurrentState.readableNextWord+'</span>'+nonHighlightedArea;
+    }
     CurrentState.readableCurrentIndex-=7;
 }
 
@@ -227,61 +240,50 @@ function typing(currentEle,e){
     Result.keystrokes+=1;
     let content= currentEle.value;
     let newKey= e.key;
-    if(newKey!='Backspace'){
-        let condition=null;
-		let w = document.getElementById('write');
-		if(w.style.color=='tomato'){
-				w.style.color='white';
-			}
-        if(userDetail.subject!='Mangal'){
-            condition=newKey==' '&&content!="";
-        }else{
-            condition=content[content.length-2]==' '&&newKey=='Process';
-        }
-        if(condition){
-            let r = document.getElementById('readable');
-            if((Result.words+1)%75==0){
-                scrollPixel+=140;
-                r.scrollTop=scrollPixel;
-            }
-            if(userDetail.subject!='Mangal'){
-                CurrentState.writtenNextIndex=content.length-1;
-            }else{
-                CurrentState.writtenNextIndex=content.length-2;
-            }
-            
-            Result.words+=1;
-            document.getElementById('totalWords').value=Result.words;
-            if(!CurrentState.isSameWord()){
-				w.style.color='tomato';
-                Result.error+=1;
-				if(userDetail.subject!='KrutiDev'){
-					eWord='['+CurrentState.readableWord+' : '+CurrentState.writtenWord+']';
-				}else{
-					eWord='¿'+CurrentState.readableWord+' % '+CurrentState.writtenWord+'À';
-				}
-                
-                Result.errorWords.push(eWord);
-            }
-            highlightNext();
-        }else if(newKey=='Pause'){
-            clearInterval(setvalue);
-            let timeshowValue=document.getElementById('timers').value;
-            Timing.min=timeshowValue.slice(0,2);
-            Timing.secTens=timeshowValue.slice(3,4);
-            Timing.secOnes=timeshowValue.slice(4,5);
-            setvalue=null;
-        }else{
-            if(setvalue==null){
-                countdown(Timing.min);
-            }
-            // startTimer
-        }
+    let w = document.getElementById('write');
+    if(w.style.color=='tomato'){
+    		w.style.color='white';
     }
+    if(newKey==' '){
+         let r = document.getElementById('readable');
+         if((Result.words+1)%75==0){
+             scrollPixel+=140;
+             r.scrollTop=scrollPixel;
+         }
+        CurrentState.writtenNextIndex=content.length-1;         
+         Result.words+=1;
+         document.getElementById('totalWords').value=Result.words;
+         if(!CurrentState.isSameWord()){
+     	w.style.color='tomato';
+            Result.error+=1;
+            if(userDetail.subject!='KrutiDev'){
+                eWord='['+CurrentState.readableWord+' : '+CurrentState.writtenWord+']';
+            }else{
+                eWord='¿'+CurrentState.readableWord+' % '+CurrentState.writtenWord+'À';
+            }             
+             Result.errorWords.push(eWord);
+         }
+         highlightNext();
+         
+     }else if(newKey=='Pause'){
+         clearInterval(setvalue);
+         let timeshowValue=document.getElementById('timers').value;
+         Timing.min=timeshowValue.slice(0,2);
+         Timing.secTens=timeshowValue.slice(3,4);
+         Timing.secOnes=timeshowValue.slice(4,5);
+         setvalue=null;
+     }else{
+         if(setvalue==null){
+             countdown(Timing.min);
+         }
+         // startTimer
+     }
 }
 
 function backspacePrevent(e,content){
-    if(e.key=='Backspace'&&content[content.length-1]==' '){
+    let condition = userDetail.backspace?e.key=='Backspace':e.key=='Backspace'&&content[content.length-1]==' ';
+    if(condition){
+        console.log(e.key+" "+condition)
         e.preventDefault();
     }
 }

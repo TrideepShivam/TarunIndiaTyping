@@ -79,15 +79,7 @@ const storys={//used to identify the readable content according to subject and l
     }
  }
 let scrollPixel=0;//to calculate scroll top for read Element;
-let userDetail={
-    space:function(){
-        if(this.subject!='Mangal'){
-            return ' ';
-        }else{
-            return ' ';
-        }
-    }
-};//includes user's detail from first form.
+let userDetail={}//includes user's detail from first form.
 var setvalue=null;//used to aquire timer interval to stop and resume the timer
 let Timing={//containers time value with minute, tens value of second and ones value of second.
     min:0,
@@ -105,7 +97,7 @@ let Result = {
 
 function start(){
     let today=new Date();
-    if(today.getDay()==4){
+    if(today.getDay()==6){
         let entry=document.getElementsByClassName('dataEntry');
         if(entry[0].value!="" && entry[0].value!=" "){
             for(i=0;i<entry.length;i++){
@@ -245,12 +237,14 @@ function typing(currentEle,e){
     		w.style.color='white';
     }
     if(newKey==' '){
-         let r = document.getElementById('readable');
-         if((Result.words+1)%75==0){
+        let currentSpace=content.length-1;
+        let r = document.getElementById('readable');
+        if((Result.words+1)%75==0){
              scrollPixel+=140;
              r.scrollTop=scrollPixel;
-         }
-        CurrentState.writtenNextIndex=content.length-1;         
+        }
+        CurrentState.writtenNextIndex = content[currentSpace]==' '?currentSpace:currentSpace-1;
+        console.log('next space '+CurrentState.writtenNextIndex+' char is '+content[CurrentState.writtenNextIndex]);        
          Result.words+=1;
          document.getElementById('totalWords').value=Result.words;
          if(!CurrentState.isSameWord()){

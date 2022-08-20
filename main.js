@@ -105,7 +105,7 @@ let Result = {
 
 function start(){
     let today=new Date();
-    if(today.getDay()==4){
+    if(today.getDay()==6){
         let entry=document.getElementsByClassName('dataEntry');
         if(entry[0].value!="" && entry[0].value!=" "){
             for(i=0;i<entry.length;i++){

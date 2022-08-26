@@ -97,7 +97,7 @@ let Result = {
 
 function start(){
     let today=new Date();
-    if(today.getDay()==6){
+    if(today.getDay()!=6){/*set it as ==6 if you don't wanna start app on sunday*/
         let entry=document.getElementsByClassName('dataEntry');
         if(entry[0].value!="" && entry[0].value!=" "){
             for(i=0;i<entry.length;i++){

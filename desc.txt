@@ -2,11 +2,16 @@ Tarun India Typing Web application.
 
 requirements:
     StartingPage:
-    0. get user name and gender.
+    0. get roll number.
     1. 3 font options- english, kruti dev, mangal.
-    2. need to set timing. 5-15 min option.
+    2. need to set timing. 1-15 min option.
     3. story option.
-    4. start test.
+    4. prevent backspace fully or default partially
+    5. prevent highlighting of text.
+    6. Start test.
+    7. check that if today is saturday then the app will let you to the test section other wise error messege will be shown.
+    8. do your test and after time completion the result card will be shown.
+    9. there is a restart button during test mode and a giveup button to emd the test.
 
 
     MainPage:

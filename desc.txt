@@ -32,3 +32,6 @@ requirements:
     2. whenever user press 'space' , next word will be hightlighted , and compare last word of typing div to last highllighted of story div.
 
     3. create a global object which store total word,errors,error value in array, keystrocks.
+
+
+#font-display:swap: used for swaping the font style if manual font is not loaded.

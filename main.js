@@ -56,7 +56,7 @@ const storys={//used to identify the readable content according to subject and l
     Mangal:{
         level1:`<span id='highlight'>एक</span> बार कुछ बंदरों को एक बड़े से पिंजरे में डाला गया और वहां पर एक सीढी लगाई गई| सीढी के ऊपरी भाग पर कुछ केले लटका दिए गए|उन केलों को खाने के लिए एक बन्दर सीढी के पास पहुंचा| जैसे ही वह बन्दर सीढी पर चढ़ने लगा, उस पर बहुत सारा ठंडा पानी गिरा दिया गया और उसके साथ-साथ बाकी बंदरों पर भी पानी गिरा दिया गया| पानी डालने पर वह बन्दर भाग कर एक कोने में चला गया| थोड़ी देर बाद एक दूसरा बन्दर सीढी के पास पहुंचा| वह जैसे ही सीढी के ऊपर चढ़ने लगा, फिर से बन्दर पर ठंडा पानी गिरा दिया गया और इसकी सजा बाकि बंदरों को भी मिली और साथ-साथ दूसरे बंदरो पर भी ठंडा पानी गिरा दिया गया| ठन्डे पानी के कारण सारे बन्दर भाग कर एक कोने में चले गए| यह प्रक्रिया चलती रही और जैसे ही कोई बन्दर सीढी पर केले खाने के लिए चढ़ता, उस पर और साथ-साथ बाकि बंदरों को इसकी सजा मिलती और उन पर ठंडा पानी डाल दिया जाता| बहुत बार ठन्डे पानी की सजा मिलने पर बन्दर समझ गए कि अगर कोई भी उस सीढी पर चढ़ने की कोशिश करेगा तो इसकी सजा सभी को मिलेगी और उन सभी पर ठंडा पानी डाल दिया जाएगा| अब जैसे ही कोई बन्दर सीढी के पास जाने की कोशिश करता तो बाकी सारे बन्दर उसकी पिटाई कर देते और उसे सीढी के पास जाने से रोक देते| थोड़ी देर बाद उस बड़े से पिंजरे में से एक बन्दर को निकाल दिया गया और उसकी जगह एक नए बन्दर को डाला गया| नए बन्दर की नजर केलों पर पड़ी| नया बन्दर वहां की परिस्थिति के बारे में नहीं जानता था इसलिए वह केले खाने के लिए सीढी की तरफ भागा| जैसे ही वह बन्दर उस सीढी की तरफ भागा, बाकि सारे बंदरों ने उसकी पिटाई कर दी| `,
         level2:`<span id='highlight'>एक</span> नदी के किनारे एक जामुन के पेड़ पर एक बन्दर रहता था जिसकी मित्रता उस नदी में रहने वाले मगरमच्छ के साथ हो गयी। वह बन्दर उस मगरमच्छ को भी खाने के लिए जामुन देता रहता था। एक दिन उस मगरमच्छ ने कुछ जामुन अपनी पत्नी को भी खिलाये। स्वादिष्ट जामुन खाने के बाद उसने यह सोचकर कि रोज़ाना ऐसे मीठे फल खाने वाले का दिल भी खूब मीठा होगा, अपने पति से उस बन्दर का दिल लाने की ज़िद्द की। पत्नी के हाथों मजबूर हुए मगरमच्छ ने भी एक चाल चली और बन्दर से कहा कि उसकी भाभी उसे मिलना चाहती है, इसलिए वह उसकी पीठ पर बैठ जाये ताकि सुरक्षित उसके घर पहुँच जाए। बन्दर भी अपने मित्र की बात का भरोसा कर, पेड़ से नदी में कूदा और उसकी पीठ पर सवार हो गया। जब वे नदी के बीचों-बीच पहुंचे तो मगरमच्छ ने सोचा कि अब बन्दर को सही बात बताने में कोई हानि नहीं और उसने भेद खोल दिया कि उसकी पत्नी उसका दिल खाना चाहती है। बन्दर को धक्का तो लगा लेकिन उसने अपना धैर्य नहीं खोया और तपाक से बोला- 'ओह! तुमने यह बात मुझे पहले क्यों नहीं बताई क्योंकि मैंने तो अपना दिल जामुन के पेड़ की खोखल में सम्भाल कर रखा है। अब जल्दी से मुझे वापस नदी के किनारे ले चलो ताकि मैं अपना दिल लाकर अपनी भाभी को उपहार में देकर उसे खुश कर सकूं।' मूर्ख मगरमच्छ बन्दर को जैसे ही नदी-किनारे ले कर आया बन्दर ने ज़ोर से जामुन के पेड़ पर छलांग लगाई और क्रोध में भरकर बोला– 'अरे मूर्ख, दिल के बिना भी क्या कोई ज़िन्दा रह सकता है? जा, आज से तेरी-मेरी दोस्ती समाप्त।' मगरमच्‍छ निराश होकर घर चला जाता है। मित्रो, बचपन में पढ़ी यह कहानी आज भी मुसीबत के क्षणों में धैर्य रखने की प्रेरणा देती है ताकि हम कठिन समय का डट कर मुकाबला कर सकें। दूसरे, मित्रता का सदैव सम्मान करें। `,
-		level3:'level3',
+		level3:`<span id='highlight'>एक</span> समय की बात है, एक जंगल में एक बंदर रहता था। वह बंदर अपने आपको बहुत चतुर समझता था। एक दिन जंगल के राजा शेर ने जगंल के बाहर जाकर खाने के लिए शिकार खोजने का फैसला किया। बंदर ने भी खाने की तलाश में जंगल की ओर रवाना हो गया। जंगल में जाते ही उसे एक छोटा सा खरगोश दिखाई दिया। खरगोश बहुत ही प्यारा और निर्मल दिख रहा था। बंदर ने सोचा कि यह खरगोश तो काफी छोटा है, इससे भूख नहीं मिटेगी। इसलिए उसने छोड़कर आगे निकल गया। खरगोश ने देखा कि बंदर ने उसे छोड़ दिया है। वह बंदर के पीछे पड़ गया और उसके पास जाकर बोला, “भैया, क्या आप मुझे खाने के लिए छोड़ देंगे?” बंदर ने खरगोश की बातों को नकारात्मकता से सुना और उसे फिर से छोड़ दिया। खरगोश ने फिर से बंदर के पीछे पड़ गया और उसके पास जाकर बोला, “भैया, क्या आप मुझे खाने के लिए छोड़ देंगे?” बंदर ने फिर से खरगोश की बातों को नकारात्मकता से सुना और उसे फिर से छोड़ दिया। खरगोश ने फिर से बंदर के पीछे पड़ गया और उसके पास जाकर बोला, “भैया, क्या आप मुझे खाने के लिए छोड़ देंगे?” इस बार बंदर ने खरगोश की बातों को सुना और उसे अपने साथ ले जाने का फैसला किया। खरगोश ने फिर से बंदर के पीछे पड़ गया और उसके पास जाकर बोला, “भैया, क्या आप मुझे खाने के लिए छोड़ देंगे?” इस बार बंदर ने खरगोश की बातों को सुना और उसे अपने साथ ले जाने का फैसला किया। खरगोश ने बंदर की मदद की और उसे खाने के लिए अपने गरम खरगोशी खाने के साथ ले गया। बंदर ने खरगोश की मदद के लिए धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। खरगोश ने बंदर को धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। बंदर ने खरगोश की मदद के लिए फिर से धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। खरगोश ने बंदर को धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। बंदर ने खरगोश की मदद के लिए फिर से धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। खरगोश ने बंदर को धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई। बंदर ने खरगोश की मदद के लिए फिर से धन्यवाद कहा और उसे अपने घर वापस ले जाने के लिए रास्ते में दिशा दिखाई।`,
 		level4:'level4',
 		level5:'level5'
          },
@@ -72,7 +72,7 @@ const storys={//used to identify the readable content according to subject and l
         level2:'level2',
         level3:'level3',
         level4:'level4',
-        level5:'level5'
+        level5:`<span id='highlight'>The</span> old bookstore on the corner of Maple Street had seen better days. Its wooden shelves sagged under the weight of countless volumes, their spines faded and pages yellowed. The bell jingled as I stepped in, the scent of aged paper and memories enveloping me. Mr. Thompson, the proprietor, sat behind the counter, his wiry frame hunched over a leather-bound book. His silver hair matched the dust motes dancing in the sunbeam that streamed through the window. He glanced up, his eyes crinkling at the corners. “Back again, young one?” he rasped, his voice a symphony of crackles. “Looking for something special?” I nodded, my gaze sweeping over the shelves. Each book held a story—a secret waiting to be unlocked. I’d spent countless afternoons here, lost in worlds beyond my own. But today, I sought something different. “An adventure,” I said. “Something unexpected.” Mr. Thompson leaned back, studying me. “Ah, the thrill of the unknown. Follow me.” He shuffled toward the back, his cane tapping a rhythm on the creaky floorboards. I trailed behind, my fingers grazing the spines. Dust clung to my skin, a badge of honor. We reached a hidden alcove, its shelves crammed with tattered tomes. “Here,” he said, pulling out a slim volume. “This one has been waiting for you.” The cover depicted a moonlit forest, its trees bending toward a hidden path. The title—The Whispering Woods—sent a shiver down my spine. I opened it, and the words flowed like a forgotten melody. The tale wove magic and mystery—a lost key, a moonflower’s bloom, and a promise whispered on the wind. I lost track of time, immersed in a world where shadows danced and stars held secrets. As I read, Mr. Thompson watched, his eyes alight with ancient wisdom. “Stories choose their readers,” he murmured. “And you, my dear, are meant for this one.” I devoured the pages, my heart racing. The characters became friends, their struggles mine. The moonflower’s fragrance filled my senses, and I yearned for the hidden path. When I reached the final chapter, Mr. Thompson leaned closer. “Remember,” he said, “adventures don’t end with the last page. Carry their magic into your life.” I stepped out of the bookstore, the bell chiming farewell. The sun had dipped below the horizon, casting long shadows. But I clutched The Whispering Woods to my chest, its promise burning bright. And as I walked home, I listened—the wind, the rustling leaves—they whispered secrets only I could hear.`
          },
     setLanguageLevel:function(languageName,levels){
         return this[languageName][levels];
@@ -115,24 +115,25 @@ function start(){
         }else{
             alert("Please Write Your name Correctly.");
         }
-    }else{
-        let main = document.getElementsByClassName('popupContainer')[0];
-        main.innerHTML=`
-                        <div id="popup">
-                            <p id="highlight">App will Start only on</p>
-                            <h1 class="specialText"><b>शनिवार</b></h1>
-                            <div id="animationContainer">
-                                <div class="animationBox" id="ab10">ध</div>
-                                <div class="animationBox" id="ab9">न्‍य</div>
-                                <div class="animationBox" id="ab8">वा</div>
-                                <div class="animationBox" id="ab7">द</div>
-                                <div class="animationBox" id="ab6">म्</div>
-                            </div>
-                            <button class="btn" id="btnClose" onclick="window.close();">close</btn>
-                        </div>
-                        `;
-        document.getElementById('popup').style.cssText="background-image:url('saturdayImg.png');background-size:cover;justify-content:flex-start;";
     }
+    // }else{
+    //     let main = document.getElementsByClassName('popupContainer')[0];
+    //     main.innerHTML=`
+    //                     <div id="popup">
+    //                         <p id="highlight">App will Start only on</p>
+    //                         <h1 class="specialText"><b>शनिवार</b></h1>
+    //                         <div id="animationContainer">
+    //                             <div class="animationBox" id="ab10">ध</div>
+    //                             <div class="animationBox" id="ab9">न्‍य</div>
+    //                             <div class="animationBox" id="ab8">वा</div>
+    //                             <div class="animationBox" id="ab7">द</div>
+    //                             <div class="animationBox" id="ab6">म्</div>
+    //                         </div>
+    //                         <button class="btn" id="btnClose" onclick="window.close();">close</btn>
+    //                     </div>
+    //                     `;
+    //     document.getElementById('popup').style.cssText="background-image:url('saturdayImg.png');background-size:cover;justify-content:flex-start;";
+    // }
 }
 
 function deploy(){
@@ -232,12 +233,12 @@ function highlightNext(){
 function typing(currentEle,e){
     Result.keystrokes+=1;
     let content= currentEle.value;
-    let newKey= e.key;
+    let newKey= e.code;
     let w = document.getElementById('write');
     if(w.style.color=='tomato'){
     		w.style.color='white';
     }
-    if(newKey==' '){
+    if(newKey=='Space'){
         let currentSpace=content.length-1;
         let r = document.getElementById('readable');
         if((Result.words+1)%75==0){
@@ -245,11 +246,11 @@ function typing(currentEle,e){
              r.scrollTop=scrollPixel;
         }
         CurrentState.writtenNextIndex = content[currentSpace]==' '?currentSpace:currentSpace-1;
-        console.log('next space '+CurrentState.writtenNextIndex+' char is '+content[CurrentState.writtenNextIndex]);        
+        // console.log('next space '+CurrentState.writtenNextIndex+' char is '+content[CurrentState.writtenNextIndex]);        
          Result.words+=1;
          document.getElementById('totalWords').value=Result.words;
          if(!CurrentState.isSameWord()){
-     	w.style.color='tomato';
+     	    w.style.color='tomato';
             Result.error+=1;
             if(userDetail.subject!='KrutiDev'){
                 eWord='['+CurrentState.readableWord+' : '+CurrentState.writtenWord+']';
@@ -276,9 +277,9 @@ function typing(currentEle,e){
 }
 
 function backspacePrevent(e,content){
-    let condition = userDetail.backspace?e.key=='Backspace':e.key=='Backspace'&&content[content.length-1]==' ';
+    let condition = userDetail.backspace?e.code=='Backspace':e.code=='Backspace'&&content[content.length-1]==' ';
     if(condition){
-        console.log(e.key+" "+condition)
+        // console.log(e.code+" "+condition)
         e.preventDefault();
     }
 }

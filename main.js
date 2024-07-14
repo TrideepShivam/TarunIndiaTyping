@@ -7,7 +7,10 @@ let CurrentState={ // used to compare current word and keep the space index valu
     writtenNextIndex:0,
     writtenWord:"",
     findWrittenWord:function(){
-        let content = document.getElementById('write').value;
+        let ele = document.getElementById('write');
+        let content = ele.value;
+        if(ele.selectionStart!=content.length)
+            ele.selectionStart=content.length;
         word = content.substring(this.writtenCurrentIndex+1,this.writtenNextIndex);
         this.writtenCurrentIndex=this.writtenNextIndex;
         this.writtenWord=word;
@@ -23,9 +26,7 @@ let CurrentState={ // used to compare current word and keep the space index valu
             character=content[counter];
         }
         this.readableCurrentIndex=counter;
-        console.log(word);
         word=word.substring(0,word.length-7);
-        console.log(word);
         this.readableWord=word;
 
         counter++;
@@ -44,7 +45,6 @@ let CurrentState={ // used to compare current word and keep the space index valu
         this.findReadableWord();
         let readable = this.readableWord;
         let written = this.writtenWord;
-        console.log(readable+' '+written+' '+CurrentState.readableCurrentIndex+' '+CurrentState.readableNextIndex);
         if(readable==written)
             return true;
         else
@@ -242,7 +242,7 @@ function typing(currentEle,e){
         let currentSpace=content.length-1;
         let r = document.getElementById('readable');
         if((Result.words+1)%75==0){
-             scrollPixel+=140;
+             scrollPixel+=140;//scroll automatically
              r.scrollTop=scrollPixel;
         }
         CurrentState.writtenNextIndex = content[currentSpace]==' '?currentSpace:currentSpace-1;

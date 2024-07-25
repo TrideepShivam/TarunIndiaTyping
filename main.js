@@ -120,6 +120,16 @@ let Result = {
 function start(){
     let today=new Date();
     // if(today.getDay()==6){/*set it as ==6 if you don't wanna start app on sunday*/
+    const element = document.documentElement; // Get the root element (usually <html>)
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.mozRequestFullScreen) {
+        element.mozRequestFullScreen();
+    } else if (element.webkitRequestFullscreen) {
+        element.webkitRequestFullscreen();
+    } else if (element.msRequestFullscreen) {
+        element.msRequestFullscreen();
+    }
     if(true){
         let entry=document.getElementsByClassName('dataEntry');
         if(entry[0].value!="" && entry[0].value!=" "){

@@ -46,10 +46,26 @@ let CurrentState={ // used to compare current word and keep the space index valu
         this.findReadableWord();
         let readable = this.readableWord;
         let written = this.writtenWord;
-        if(readable==written)
-            return true;
-        else
-            return false;
+        if (userDetail.subject === 'Mangal' && window.RemingtonGail) {
+            readable = RemingtonGail.normalizeHindi(readable);
+            written = RemingtonGail.normalizeHindi(written);
+        }
+        const readableChars = Array.from(readable);
+        const writtenChars = Array.from(written);
+        const charComparison = Array.from(
+            { length: Math.max(readableChars.length, writtenChars.length) },
+            (_, index) => ({
+                index,
+                readable: readableChars[index] ?? '(missing)',
+                written: writtenChars[index] ?? '(missing)',
+                equal: readableChars[index] === writtenChars[index],
+            })
+        );
+        const equal = readable === written;
+        console.log('Compared words:', { readable, written });
+        console.table(charComparison);
+        console.log('Words equal:', equal);
+        return equal;
     }
 }
 
@@ -178,11 +194,35 @@ function deploy(){
     Result.totalTime=Timing.min;
     readPara.classList.add(setLang(userDetail.subject));
     document.getElementById('write').classList.add(setLang(userDetail.subject));
+    if(userDetail.subject === 'Mangal') {
+        document.getElementById('write').placeholder='मंगल रेमिंगटन गेल से टाइप करें';
+        CurrentState.readableCurrentIndex = 5;
+    }
     if(userDetail.highlight){
         document.getElementById('highlight').removeAttribute('id'); /* change the id because the style is merged as inline style in highlight */
         CurrentState.readableCurrentIndex=5;
     }
     
+}
+
+function remingtonKeydown(e, field) {
+    if (userDetail.subject !== 'Mangal') return;
+    const layout = RemingtonGail.buildLayout();
+    const output = RemingtonGail.mapKey(layout, e);
+    if (output == null) {
+        if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) e.preventDefault();
+        return;
+    }
+    e.preventDefault();
+    const start = field.selectionStart;
+    const end = field.selectionEnd;
+    const typedBeforeCursor = field.value.slice(0, start);
+    const composedPrefix = RemingtonGail.append(typedBeforeCursor, output);
+    let commonPrefix = 0;
+    while (commonPrefix < typedBeforeCursor.length &&
+           typedBeforeCursor[commonPrefix] === composedPrefix[commonPrefix]) commonPrefix++;
+    field.setRangeText(composedPrefix.slice(commonPrefix), commonPrefix, end, 'end');
+    field.dispatchEvent(new Event('input', { bubbles: true }));
 }
 
 function setLang(subs) {

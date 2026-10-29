@@ -47,8 +47,8 @@ let CurrentState={ // used to compare current word and keep the space index valu
         let readable = this.readableWord;
         let written = this.writtenWord;
         if (userDetail.subject === 'Mangal' && window.RemingtonGail) {
-            readable = RemingtonGail.normalizeHindi(readable);
-            written = RemingtonGail.normalizeHindi(written);
+            readable = RemingtonGail.normalizeHindiForComparison(readable);
+            written = RemingtonGail.normalizeHindiForComparison(written);
         }
         const readableChars = Array.from(readable);
         const writtenChars = Array.from(written);
@@ -197,6 +197,7 @@ function deploy(){
     if(userDetail.subject === 'Mangal') {
         document.getElementById('write').placeholder='मंगल रेमिंगटन गेल से टाइप करें';
         CurrentState.readableCurrentIndex = 5;
+        if (mangalInputEngine) mangalInputEngine.reset();
     }
     if(userDetail.highlight){
         document.getElementById('highlight').removeAttribute('id'); /* change the id because the style is merged as inline style in highlight */
@@ -205,24 +206,14 @@ function deploy(){
     
 }
 
+let mangalInputEngine = null;
+
 function remingtonKeydown(e, field) {
     if (userDetail.subject !== 'Mangal') return;
-    const layout = RemingtonGail.buildLayout();
-    const output = RemingtonGail.mapKey(layout, e);
-    if (output == null) {
-        if (!e.ctrlKey && !e.metaKey && !e.altKey && e.key.length === 1) e.preventDefault();
-        return;
+    if (!mangalInputEngine) {
+        mangalInputEngine = RemingtonGail.createInputEngine();
     }
-    e.preventDefault();
-    const start = field.selectionStart;
-    const end = field.selectionEnd;
-    const typedBeforeCursor = field.value.slice(0, start);
-    const composedPrefix = RemingtonGail.append(typedBeforeCursor, output);
-    let commonPrefix = 0;
-    while (commonPrefix < typedBeforeCursor.length &&
-           typedBeforeCursor[commonPrefix] === composedPrefix[commonPrefix]) commonPrefix++;
-    field.setRangeText(composedPrefix.slice(commonPrefix), commonPrefix, end, 'end');
-    field.dispatchEvent(new Event('input', { bubbles: true }));
+    mangalInputEngine.keyDown(field, e);
 }
 
 function setLang(subs) {

@@ -4,7 +4,7 @@
 
 const KEYS = {
   Backquote: ['़', 'द्य'],Digit1: ['1', '।'], Digit2: ['2', '/'], Digit3: ['3', ':'],Digit4: ['4', '*'], Digit5: ['5', '-'], Digit6: ['6', "'"], Digit7: ['7', "'"], Digit8: ['8', "द्ध"], Digit9: ['9', 'त्र'], Digit0: ['0', 'ऋ'],Minus: [';', '.'], Equal: ['ृ', '्'],
-    KeyQ: ['ु', 'फ'], KeyW: ['ू', 'ॅ'], KeyE: ['म', 'म्'], KeyR: ['त', 'त्'],KeyT: ['ज', 'ज्'], KeyY: ['ल', 'ल्'], KeyU: ['न', 'न्'], KeyI: ['प', 'प्'],KeyO: ['व', 'व्'], KeyP: ['च', 'च्'], BracketLeft: ['ख्', 'क्ष'], BracketRight: [',', 'द्व'],
+    KeyQ: ['ु', 'फ'], KeyW: ['ू', 'ॅ'], KeyE: ['म', 'म्'], KeyR: ['त', 'त्'],KeyT: ['ज', 'ज्'], KeyY: ['ल', 'ल्'], KeyU: ['न', 'न्'], KeyI: ['प', 'प्'],KeyO: ['व', 'व्'], KeyP: ['च', 'च्'], BracketLeft: ['ख्', 'क्ष्'], BracketRight: [',', 'द्व'],
     KeyA: ['ं', 'ा'], KeyS: ['े', 'ै'], KeyD: ['क', 'क्'], KeyF: ['ि', 'थ्'], KeyG: ['ह', 'ळ'], KeyH: ['ी', 'भ्'], KeyJ: ['र', 'श्र'], KeyK: ['ा', 'ज्ञ'], KeyL: ['स', 'स्'], Semicolon: ['य', 'रू'], Quote: ['श्', 'ष्'],
     KeyZ: ['्र', 'र्'], KeyX: ['ग', 'ग्'], KeyC: ['ब', 'ब्'], KeyV: ['अ', 'ट'], KeyB: ['इ', 'ठ'], KeyN: ['द', 'छ'], KeyM: ['उ', 'ड'], Comma: ['ए', 'ढ'], Period: ['ण्', 'झ'],
     Backslash: ['(',')'],
@@ -77,50 +77,14 @@ const COMPOSE_SOURCE = {
   'ज्ञ्ा': 'ज्ञ',
   'श्र्ा': 'श्र',
   
-  'िक': 'कि',
-  'िख': 'खि',
-  'िग': 'गि',
-  'िघ': 'घि',
-  'िङ': 'ङि',
-  'िच': 'चि',
-  'िछ': 'छि',
-  'िज': 'जि',
-  'िझ': 'झि',
-  'िञ': 'ञि',
-  'िट': 'टि',
-  'िठ': 'ठि',
-  'िड': 'डि',
-  'िढ': 'ढि',
-  'िण': 'णि',
-  'ित': 'ति',
-  'िथ': 'थि',
-  'िद': 'दि',
-  'िध': 'धि',
-  'िन': 'नि',
-  'िप': 'पि',
-  'िफ': 'फि',
-  'िब': 'बि',
-  'िभ': 'भि',
-  'िम': 'मि',
-  'िय': 'यि',
-  'िर': 'रि',
-  'िल': 'लि',
-  'िव': 'वि',
-  'िश': 'शि',
-  'िष': 'षि',
-  'िस': 'सि',
-  'िह': 'हि',
-  'िळ': 'ळि',
-  'िक्ष': 'क्षि',
-  'ित्र': 'त्रि',
-  'िज्ञ': 'ज्ञि',
-  'िश्र': 'श्रि'
-
 };
 
 export const COMPOSE = Object.fromEntries(Object.entries(COMPOSE_SOURCE).map(
   ([sequence, result]) => [restoreHindi(sequence), restoreHindi(result)]
 ));
+const COMPOSE_RULES = Object.entries(COMPOSE).sort(
+  ([left], [right]) => Array.from(right).length - Array.from(left).length
+);
 // र्e this on BOTH the passage word and the typed word before comparing.
 // "ड़" can be one code point (U+095C) or ड + ़ (U+0921 U+093C). They look the
 // same but are not equal as strings. NFC turns both into the same sequence.
@@ -128,9 +92,12 @@ export function normalizeHindi(s = '') {
   return s
     .normalize('NFC')
     .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')   // zero-width chars
-    .replace(/\u00A0/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim();
+    .replace(/\u00A0/g, ' ');
+}
+
+// Comparison may ignore repeated and outer whitespace; live input must not.
+export function normalizeHindiForComparison(s = '') {
+  return normalizeHindi(s).replace(/\s+/g, ' ').trim();
 }
 
 // Last syllable: (consonant + halant)* consonant [nukta] [matras]
@@ -145,17 +112,120 @@ export function mapKey(layout, e) {
   return entry[e.shiftKey ? 1 : 0] ?? null;         // CapsLock is ignored
 }
 
-export function append(text, out, rules = COMPOSE) {
+export function append(text, out, rules = COMPOSE, { moveAttachedI = false } = {}) {
+  text = String(text ?? '');
+  out = String(out ?? '');
+  if (!out) return text;
+
+  // Halant + aaakar is a layout composition that completes the consonant
+  // (including क्ष् + ा -> क्ष), so let COMPOSE handle that pair below.
+  // Other matras complete the consonant and then attach normally.
+  if (
+    /^[\u093E-\u094C]$/.test(out) &&
+    out !== '\u093E' &&
+    text.endsWith('\u094D')
+  ) {
+    return normalizeHindi(text.slice(0, -1) + out);
+  }
+
+  // Short-i after a half-form completes that consonant cluster: क्ष् + ि -> क्षि.
+  if (out === '\u093F' && text.endsWith('\u094D')) {
+    return normalizeHindi(text.slice(0, -1) + out);
+  }
+
+  // Shift+Z produces reph (र्). When typed after a syllable, move it before
+  // that syllable and keep any short-i attached to its consonant: कि + र् -> र्कि.
+  if (out === '\u0930\u094D') {
+    const syllable = text.match(LAST_SYLLABLE);
+    if (syllable) {
+      return normalizeHindi(
+        text.slice(0, syllable.index) + out + syllable[0]
+      );
+    }
+  }
+
+  // The short-i sign may already follow a consonant when the latkan-ra key
+  // arrives (पि + ्र). Keep it after the completed conjunct: प् + र + ि = प्रि.
+  if (out === '्र' && text.endsWith('ि')) {
+    const withoutI = text.slice(0, -1);
+    if (/[\u0915-\u0939\u0958-\u095F]$/.test(withoutI)) {
+      return normalizeHindi(withoutI + '्रि');
+    }
+  }
+
+  // Move a leading short-i after the next consonant, but keep it with its
+  // intended consonant. An i already attached to a consonant moves only when
+  // the input engine marks the immediately following consonant as its target.
+  if (text.endsWith('ि') && /[\u0915-\u0939\u0958-\u095F]/.test(out[0])) {
+    const beforeI = text.slice(0, -1);
+    const alreadyAttached = /[\u0915-\u0939\u0958-\u095F]$/.test(beforeI);
+    if (!alreadyAttached || moveAttachedI) {
+      const consonant = out.endsWith('\u094D') ? out.slice(0, -1) : out;
+      return normalizeHindi(beforeI + consonant + '\u093F');
+    }
+  }
+
   if (text && out) {
-    for (const sequence of Object.keys(rules).sort((a, b) => b.length - a.length)) {
+    const orderedRules = rules === COMPOSE
+      ? COMPOSE_RULES
+      : Object.entries(rules).sort(
+          ([left], [right]) => Array.from(right).length - Array.from(left).length
+        );
+    for (const [sequence, result] of orderedRules) {
       if (!sequence.endsWith(out)) continue;
       const prefix = sequence.slice(0, -out.length);
       if (prefix && text.endsWith(prefix)) {
-        return (text.slice(0, -prefix.length) + rules[sequence]).normalize('NFC');
+        return normalizeHindi(text.slice(0, -prefix.length) + result);
       }
     }
   }
-  return (text + out).normalize('NFC');
+  return normalizeHindi(text + out);
+}
+
+// Mangal input adapter used by main.js. It owns keyboard mapping and Unicode
+// composition so the browser never inserts an uncomposed intermediate glyph.
+export function createInputEngine() {
+  const layout = buildLayout();
+  let strokes = 0;
+  let shortIPosition = -1;
+
+  return {
+    get strokes() { return strokes; },
+    reset() { strokes = 0; shortIPosition = -1; },
+
+    keyDown(field, event) {
+      if (!field || !event) return false;
+
+      // Let shortcuts, navigation, and selection commands retain native behavior.
+      if (event.ctrlKey || event.metaKey || event.altKey) return false;
+      if (event.key === 'Backspace' || event.key === 'Delete' ||
+          event.key.startsWith('Arrow') || event.key === 'Home' ||
+          event.key === 'End' || event.key === 'Tab' || event.key === 'Escape' ||
+          event.key === 'PageUp' || event.key === 'PageDown') return false;
+
+      const output = mapKey(layout, event);
+      if (output == null) return false;
+
+      const start = field.selectionStart ?? field.value.length;
+      const end = field.selectionEnd ?? start;
+      const left = field.value.slice(0, start);
+      const right = field.value.slice(end);
+      const moveAttachedI = start === end && shortIPosition === start;
+      const composedLeft = append(left, output, COMPOSE, { moveAttachedI });
+
+      event.preventDefault();
+      field.value = composedLeft + right;
+      const caret = composedLeft.length;
+      field.setSelectionRange(caret, caret);
+      shortIPosition = output === '\u093F' &&
+        /[\u0915-\u0939\u0958-\u095F]$/.test(left)
+        ? caret
+        : -1;
+      strokes += 1;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    },
+  };
 }
 
 // Stateful typer: wire keyDown/keyUp to your typing box.

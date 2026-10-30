@@ -216,6 +216,19 @@ function remingtonKeydown(e, field) {
     mangalInputEngine.keyDown(field, e);
 }
 
+function remingtonKeyup(e, field) {
+    if (userDetail.subject !== 'Mangal') return false;
+    if (!mangalInputEngine) {
+        mangalInputEngine = RemingtonGail.createInputEngine();
+    }
+    return mangalInputEngine.keyUp(field, e);
+}
+
+function remingtonBeforeInput(e) {
+    if (userDetail.subject !== 'Mangal' || !mangalInputEngine) return false;
+    return mangalInputEngine.beforeInput(e);
+}
+
 function setLang(subs) {
     switch (subs) {
         case 'English':

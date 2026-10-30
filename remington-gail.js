@@ -88,6 +88,20 @@ const COMPOSE_RULES = Object.entries(COMPOSE).sort(
 // र्e this on BOTH the passage word and the typed word before comparing.
 // "ड़" can be one code point (U+095C) or ड + ़ (U+0921 U+093C). They look the
 // same but are not equal as strings. NFC turns both into the same sequence.
+// Windows-style Alt+numpad codes supported by the Mangal text box.
+const ALT_CODE_MAP = new Map([
+  [2305, '\u0901'], [2315, '\u090B'], [2329, '\u0919'], [2334, '\u091E'],
+  [2365, '\u093D'], [2384, '\u0950'], [2395, '\u095B'], [2396, '\u095C'],
+  [2397, '\u095D'], [2398, '\u095E'], [2406, '\u0966'], [2416, '\u0970'],
+  [33, '!'], [35, '#'], [36, '$'], [37, '%'], [38, '&'], [40, '('], [41, ')'],
+  [42, '*'], [43, '+'], [47, '/'], [58, ':'], [59, ';'], [60, '<'], [61, '='],
+  [62, '>'], [63, '?'], [64, '@'], [91, '['], [92, '\\'], [93, ']'], [95, '_'],
+  [123, '{'], [125, '}'], [150, '\u2013'], [151, '\u2014'], [215, '\u00D7'],
+  [189, '\u00BD'], [190, '\u00BE'], [247, '\u00F7'], [169, '\u00A9'],
+  [155, '\u203A'], [153, '\u2122'], [699, '\u02BB'], [700, '\u02BC'],
+  [2404, '\u0964'], [2405, '\u0965'], [147, '\u201C'], [148, '\u201D'],
+]);
+
 export function normalizeHindi(s = '') {
   return s
     .normalize('NFC')
@@ -216,16 +230,36 @@ export function createInputEngine() {
   const layout = buildLayout();
   let strokes = 0;
   let shortIPosition = -1;
+  let altCodeBuffer = '';
+  let suppressAltCodeText = false;
+  let suppressAltCodeTimer = null;
 
   return {
     get strokes() { return strokes; },
-    reset() { strokes = 0; shortIPosition = -1; },
+    reset() {
+      strokes = 0;
+      shortIPosition = -1;
+      altCodeBuffer = '';
+      suppressAltCodeText = false;
+      if (suppressAltCodeTimer !== null) clearTimeout(suppressAltCodeTimer);
+      suppressAltCodeTimer = null;
+    },
 
     keyDown(field, event) {
       if (!field || !event) return false;
 
+      // Capture both numpad digits and the top-row digits while Alt is held.
+      // Keeping the buffer as text preserves leading zeroes until lookup.
+      if (event.altKey && /^(?:Numpad|Digit)\d$/.test(event.code)) {
+        altCodeBuffer += event.code.slice(-1);
+        shortIPosition = -1;
+        event.preventDefault();
+        return true;
+      }
+
       // Let shortcuts, navigation, and selection commands retain native behavior.
       if (event.ctrlKey || event.metaKey || event.altKey) {
+        if (event.altKey) altCodeBuffer = '';
         shortIPosition = -1;
         return false;
       }
@@ -264,6 +298,48 @@ export function createInputEngine() {
         : -1;
       strokes += 1;
       field.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    },
+
+    keyUp(field, event) {
+      if (!field || !event || !/^Alt(?:Left|Right)$/.test(event.code)) return false;
+      if (!altCodeBuffer) return false;
+
+      const altCode = Number(altCodeBuffer);
+      altCodeBuffer = '';
+      shortIPosition = -1;
+      const inserted = ALT_CODE_MAP.get(altCode);
+      // Leave unlisted codes to the browser/OS Alt-code handler.
+      if (inserted == null) return false;
+      event.preventDefault();
+
+      // Some systems emit their own Alt-code character on release. Ignore the
+      // next native text insertion for codes handled here, even if it differs.
+      suppressAltCodeText = true;
+      if (suppressAltCodeTimer !== null) clearTimeout(suppressAltCodeTimer);
+      suppressAltCodeTimer = setTimeout(() => {
+        suppressAltCodeText = false;
+        suppressAltCodeTimer = null;
+      }, 0);
+
+      const start = field.selectionStart ?? field.value.length;
+      const end = field.selectionEnd ?? start;
+      field.value = field.value.slice(0, start) + inserted + field.value.slice(end);
+      const caret = start + inserted.length;
+      field.setSelectionRange(caret, caret);
+      strokes += 1;
+      field.dispatchEvent(new Event('input', { bubbles: true }));
+      return true;
+    },
+
+    beforeInput(event) {
+      if (!event || event.inputType !== 'insertText') return false;
+      if (!suppressAltCodeText) return false;
+
+      event.preventDefault();
+      suppressAltCodeText = false;
+      if (suppressAltCodeTimer !== null) clearTimeout(suppressAltCodeTimer);
+      suppressAltCodeTimer = null;
       return true;
     },
   };

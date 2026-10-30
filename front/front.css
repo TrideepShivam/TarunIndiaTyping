@@ -133,3 +133,79 @@
 	cursor:hand;
 	transition:all .4s;
 }
+
+@media (max-width: 768px){
+	.popupContainer{
+		position:fixed;
+		inset:0;
+		width:auto;
+		height:auto;
+		min-height:100vh;
+		min-height:100dvh;
+		padding:12px;
+		box-sizing:border-box;
+		gap:12px;
+		overflow-y:auto;
+	}
+	#popup{
+		width:100%;
+		max-width:560px;
+		max-height:calc(100vh - 24px);
+		max-height:calc(100dvh - 24px);
+		padding:20px 16px;
+		box-sizing:border-box;
+		overflow-y:auto;
+	}
+	.specialText{font-size:clamp(2.2rem, 10vw, 3.5rem);}
+	#restrictionContainer{
+		width:100%;
+		box-sizing:border-box;
+		margin:12px 0;
+	}
+	#username,
+	.dataEntry:not(.checkboxMiddleSection input){
+		width:100%;
+		min-width:0;
+		box-sizing:border-box;
+		margin:6px 0;
+	}
+	.btn{
+		min-height:44px;
+		max-width:100%;
+		padding:14px 20px;
+		box-sizing:border-box;
+		font-size:clamp(16px, 4.5vw, 21px);
+	}
+	#cardContainer{
+		width:100%;
+		gap:4px;
+	}
+	.card{
+		width:clamp(76px, 22vw, 110px);
+		height:clamp(76px, 22vw, 110px);
+		margin:5px;
+		border-width:3px;
+	}
+	.card h1{font-size:clamp(26px, 8vw, 36px);}
+	#errorContainer{
+		position:fixed;
+		top:auto;
+		right:12px;
+		bottom:12px;
+		width:max-content;
+		max-width:calc(100vw - 24px);
+		padding:12px;
+		box-sizing:border-box;
+	}
+}
+
+@media (max-width: 480px){
+	#restrictionContainer{
+		flex-direction:column;
+		align-items:stretch;
+		gap:8px;
+		font-size:16px;
+	}
+	#username{max-width:100%;}
+	.checkboxMiddleSection{margin:8px 0;}
+}

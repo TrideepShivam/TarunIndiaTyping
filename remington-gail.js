@@ -6,7 +6,7 @@ const KEYS = {
   Backquote: ['़', 'द्य'],Digit1: ['1', '।'], Digit2: ['2', '/'], Digit3: ['3', ':'],Digit4: ['4', '*'], Digit5: ['5', '-'], Digit6: ['6', "'"], Digit7: ['7', "'"], Digit8: ['8', "द्ध"], Digit9: ['9', 'त्र'], Digit0: ['0', 'ऋ'],Minus: [';', '.'], Equal: ['ृ', '्'],
     KeyQ: ['ु', 'फ'], KeyW: ['ू', 'ॅ'], KeyE: ['म', 'म्'], KeyR: ['त', 'त्'],KeyT: ['ज', 'ज्'], KeyY: ['ल', 'ल्'], KeyU: ['न', 'न्'], KeyI: ['प', 'प्'],KeyO: ['व', 'व्'], KeyP: ['च', 'च्'], BracketLeft: ['ख्', 'क्ष्'], BracketRight: [',', 'द्व'],
     KeyA: ['ं', 'ा'], KeyS: ['े', 'ै'], KeyD: ['क', 'क्'], KeyF: ['ि', 'थ्'], KeyG: ['ह', 'ळ'], KeyH: ['ी', 'भ्'], KeyJ: ['र', 'श्र'], KeyK: ['ा', 'ज्ञ'], KeyL: ['स', 'स्'], Semicolon: ['य', 'रू'], Quote: ['श्', 'ष्'],
-    KeyZ: ['्र', 'र्'], KeyX: ['ग', 'ग्'], KeyC: ['ब', 'ब्'], KeyV: ['अ', 'ट'], KeyB: ['इ', 'ठ'], KeyN: ['द', 'छ'], KeyM: ['उ', 'ड'], Comma: ['ए', 'ढ'], Period: ['ण्', 'झ'],
+    KeyZ: ['्र', 'र्'], KeyX: ['ग', 'ग्'], KeyC: ['ब', 'ब्'], KeyV: ['अ', 'ट'], KeyB: ['इ', 'ठ'], KeyN: ['द', 'छ'], KeyM: ['उ', 'ड'], Comma: ['ए', 'ढ'], Period: ['ण्', 'झ'],Slash: ['ध्‍','घ्‍'],
     Backslash: ['(',')'],
     Space: [' ', ' '],
 };
@@ -91,13 +91,15 @@ const COMPOSE_RULES = Object.entries(COMPOSE).sort(
 export function normalizeHindi(s = '') {
   return s
     .normalize('NFC')
-    .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')   // zero-width chars
     .replace(/\u00A0/g, ' ');
 }
 
 // Comparison may ignore repeated and outer whitespace; live input must not.
 export function normalizeHindiForComparison(s = '') {
-  return normalizeHindi(s).replace(/\s+/g, ' ').trim();
+  return normalizeHindi(s)
+    .replace(/[\u200B-\u200D\u2060\uFEFF]/g, '')
+    .replace(/\s+/g, ' ')
+    .trim();
 }
 
 // Last syllable: (consonant + halant)* consonant [nukta] [matras]
@@ -133,8 +135,34 @@ export function append(text, out, rules = COMPOSE, { moveAttachedI = false } = {
     return normalizeHindi(text.slice(0, -1) + out);
   }
 
-  // Shift+Z produces reph (र्). When typed after a syllable, move it before
-  // that syllable and keep any short-i attached to its consonant: कि + र् -> र्कि.
+  // Encode a direct i + half consonant in logical order and force the half form.
+  if (
+    text.endsWith('\u093F') &&
+    /^[\u0915-\u0939\u0958-\u095F]/u.test(out) &&
+    /\u094D\u200D?$/u.test(out)
+  ) {
+    const halfConsonant = out.replace(/\u094D\u200D?$/u, '');
+    return normalizeHindi(
+      text.slice(0, -1) + halfConsonant + '\u093F\u094D\u200D'
+    );
+  }
+
+  // If a second consonant follows, complete the conjunct and attach i there.
+  // The inserted ZWJ locks the first consonant into its requested half form.
+  const shortIHalfForm = text.match(
+    /^(.*)([\u0915-\u0939\u0958-\u095F]\u093C?(?:\u094D\u200D?[\u0915-\u0939\u0958-\u095F]\u093C?)*)\u093F\u094D\u200D$/u
+  );
+  if (
+    shortIHalfForm &&
+    /^[\u0915-\u0939\u0958-\u095F]/u.test(out)
+  ) {
+    const [, beforeCluster, finalConsonant] = shortIHalfForm;
+    return normalizeHindi(
+      beforeCluster + finalConsonant + '\u094D\u200D' + out + '\u093F'
+    );
+  }
+
+  // Shift+Z produces reph; move it before the preceding syllable.
   if (out === '\u0930\u094D') {
     const syllable = text.match(LAST_SYLLABLE);
     if (syllable) {
@@ -197,20 +225,33 @@ export function createInputEngine() {
       if (!field || !event) return false;
 
       // Let shortcuts, navigation, and selection commands retain native behavior.
-      if (event.ctrlKey || event.metaKey || event.altKey) return false;
+      if (event.ctrlKey || event.metaKey || event.altKey) {
+        shortIPosition = -1;
+        return false;
+      }
       if (event.key === 'Backspace' || event.key === 'Delete' ||
           event.key.startsWith('Arrow') || event.key === 'Home' ||
           event.key === 'End' || event.key === 'Tab' || event.key === 'Escape' ||
-          event.key === 'PageUp' || event.key === 'PageDown') return false;
+          event.key === 'PageUp' || event.key === 'PageDown') {
+        shortIPosition = -1;
+        return false;
+      }
 
       const output = mapKey(layout, event);
-      if (output == null) return false;
+      if (output == null) {
+        shortIPosition = -1;
+        return false;
+      }
 
       const start = field.selectionStart ?? field.value.length;
       const end = field.selectionEnd ?? start;
       const left = field.value.slice(0, start);
       const right = field.value.slice(end);
-      const moveAttachedI = start === end && shortIPosition === start;
+      // Consume the one-key transfer as soon as the next mapped key arrives.
+      // A later consonant must never move the same i-matra again.
+      const moveAttachedI = start === end && shortIPosition === start &&
+        left.endsWith('\u093F');
+      shortIPosition = -1;
       const composedLeft = append(left, output, COMPOSE, { moveAttachedI });
 
       event.preventDefault();

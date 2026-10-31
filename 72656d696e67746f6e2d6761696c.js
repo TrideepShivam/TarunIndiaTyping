@@ -224,7 +224,7 @@ export function append(text, out, rules = COMPOSE, { moveAttachedI = false } = {
   return normalizeHindi(text + out);
 }
 
-// Mangal input adapter used by main.js. It owns keyboard mapping and Unicode
+// Mangal input adapter used by 6d61696e.js. It owns keyboard mapping and Unicode
 // composition so the browser never inserts an uncomposed intermediate glyph.
 export function createInputEngine() {
   const layout = buildLayout();

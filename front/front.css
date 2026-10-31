@@ -30,6 +30,13 @@
     margin:5px;
     text-shadow: 0 0 25px rgba(0, 255, 255,.2);
 }
+.poweredBy{
+    color:silver;
+    font-size:12px;
+    margin-top:10px;
+    text-decoration:none;
+}
+.poweredBy:hover{text-decoration:underline;color:var(--themecolor);}
 #restrictionContainer{
     display:flex;
     justify-content: space-between;
@@ -135,6 +142,7 @@
 }
 
 @media (max-width: 768px){
+	.popupImage{display:none;}
 	.popupContainer{
 		position:fixed;
 		inset:0;

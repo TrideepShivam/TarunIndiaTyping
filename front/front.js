@@ -2,7 +2,7 @@ function frontPopup(order=false) {
     let main = document.createElement('div');
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
-    main.innerHTML=`<img src='frontImg.png' width='35%'>
+    main.innerHTML=`<img class="popupImage" src='frontImg.png' width='35%'>
                     <div id="popup">
                     `+getContent(order)+`
                     </div>
@@ -42,6 +42,7 @@ function getContent(o){
                     </div>Highlight  
                 </div>
                 <button class="btn" onclick="start()">Start Test</button>
+                <a class="poweredBy" href="https://www.tarunindia.in">Powered by Tarun India</a>
                 `;
     }else{
         return `
@@ -70,7 +71,7 @@ function getContent(o){
 
                 </div>
                 <button class="btn" onclick="location.reload();">Restart</button>
-                <p class="themeText" style="font-size:15px;">Powered By Tarun India</p>
+                <a class="poweredBy" href="https://www.tarunindia.in">Powered by Tarun India</a>
                 `;
     }
 }

@@ -3,7 +3,7 @@ function frontPopup(order=false) {
     main.setAttribute('class', 'popupContainer');
     document.body.appendChild(main);
     main.innerHTML=`<img class="popupImage" src='frontImg.png' width='35%'>
-                    <div id="popup">
+                    <div id="popup" class="${order ? 'resultPopup' : 'setupPopup'}">
                     `+getContent(order)+`
                     </div>
                     `;
@@ -43,6 +43,7 @@ function getContent(o){
                 </div>
                 <button class="btn" onclick="start()">Start Test</button>
                 <a class="poweredBy" href="https://www.tarunindia.in">Powered by Tarun India</a>
+                <p>For Typing, Computer, Shorthand courses visit Tarun India Institute, Madhepura <a class="poweredBy" href="https://maps.app.goo.gl/NiYLRmZS5bzzvqR48">See Google Map</a></p>
                 `;
     }else{
         return `
@@ -72,6 +73,7 @@ function getContent(o){
                 </div>
                 <button class="btn" onclick="location.reload();">Restart</button>
                 <a class="poweredBy" href="https://www.tarunindia.in">Powered by Tarun India</a>
+                <p>For Typing, Computer, Shorthand courses visit Tarun India Institute, Madhepura <a class="poweredBy" href="https://maps.app.goo.gl/NiYLRmZS5bzzvqR48">See Google Map</a></p>
                 `;
     }
 }

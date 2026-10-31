@@ -22,7 +22,7 @@
 				<p id="read">Showing Text</p>
 			</div>
 			<div class="textContainer" id="writable">
-			<textarea id="write" inputmode="none" placeholder="start typing..." onbeforeinput="remingtonBeforeInput(event)" onkeydown="backspacePrevent(event,this.value); remingtonKeydown(event,this)" onkeyup="remingtonKeyup(event,this); typing(this,event)"></textarea>
+			<textarea id="write" inputmode="none" placeholder="start typing..." onbeforeinput="remingtonBeforeInput(event)" oninput="keepWritingBoxFixed(this)" onkeydown="backspacePrevent(event,this.value); remingtonKeydown(event,this)" onkeyup="remingtonKeyup(event,this); typing(this,event)"></textarea>
 			</div>
 		</div>
 		<div class="container" id="userProfile">

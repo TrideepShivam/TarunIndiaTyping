@@ -321,42 +321,6 @@ function highlightNext(){
     CurrentState.readableCurrentIndex-=7;
 }
 
-function centerTypingCaret(field){
-    const caret = field.selectionStart;
-    const computed = window.getComputedStyle(field);
-    const mirror = document.createElement('div');
-    const marker = document.createElement('span');
-    const copiedStyles = [
-        'fontFamily', 'fontSize', 'fontWeight', 'fontStyle', 'letterSpacing',
-        'lineHeight', 'textIndent', 'textTransform', 'wordSpacing', 'padding',
-        'border', 'boxSizing', 'whiteSpace', 'wordBreak', 'overflowWrap'
-    ];
-
-    mirror.style.position = 'fixed';
-    mirror.style.left = '-10000px';
-    mirror.style.top = '0';
-    mirror.style.visibility = 'hidden';
-    mirror.style.width = `${field.clientWidth}px`;
-    copiedStyles.forEach(style => mirror.style[style] = computed[style]);
-    mirror.style.height = 'auto';
-    mirror.style.minHeight = '0';
-    mirror.style.overflow = 'visible';
-    mirror.style.whiteSpace = 'pre-wrap';
-    mirror.style.overflowWrap = 'break-word';
-
-    mirror.textContent = field.value.slice(0, caret);
-    marker.textContent = '\u200b';
-    mirror.appendChild(marker);
-    document.body.appendChild(mirror);
-
-    const markerRect = marker.getBoundingClientRect();
-    const fieldRect = field.getBoundingClientRect();
-    const caretCenter = markerRect.top + markerRect.height / 2;
-    const visibleCenter = fieldRect.top + field.clientHeight / 2;
-    field.scrollTop += caretCenter - visibleCenter;
-    mirror.remove();
-}
-
 function typing(currentEle,e){
     Result.keystrokes+=1;
     let content= currentEle.value;
@@ -365,7 +329,6 @@ function typing(currentEle,e){
     if(w.style.color=='tomato'){
     		w.style.color='white';
     }
-    centerTypingCaret(currentEle);
     if(newKey=='Space'){
         let currentSpace=content.length-1;
         CurrentState.writtenNextIndex = content[currentSpace]==' '?currentSpace:currentSpace-1;
@@ -397,6 +360,16 @@ function typing(currentEle,e){
          }
          // startTimer
      }
+}
+
+function keepWritingBoxFixed(field){
+    if (!window.matchMedia('(max-width: 768px)').matches) return;
+    // Mobile browsers scroll textareas to follow the caret; keep the typing
+    // panel anchored at its initial position instead of letting it jump.
+    requestAnimationFrame(() => {
+        field.scrollTop = 0;
+        field.scrollLeft = 0;
+    });
 }
 
 function backspacePrevent(e,content){

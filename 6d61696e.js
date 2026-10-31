@@ -362,16 +362,6 @@ function typing(currentEle,e){
      }
 }
 
-function keepWritingBoxFixed(field){
-    if (!window.matchMedia('(max-width: 768px)').matches) return;
-    // Mobile browsers scroll textareas to follow the caret; keep the typing
-    // panel anchored at its initial position instead of letting it jump.
-    requestAnimationFrame(() => {
-        field.scrollTop = 0;
-        field.scrollLeft = 0;
-    });
-}
-
 function backspacePrevent(e,content){
     let condition = userDetail.backspace?e.code=='Backspace':e.code=='Backspace'&&content[content.length-1]==' ';
     if(condition){
